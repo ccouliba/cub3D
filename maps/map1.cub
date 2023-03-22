@@ -1,0 +1,16 @@
+
+NO ./maps/north.xpm
+SO ./maps/south.xpm
+WE ./maps/west.xpm
+
+EA ./maps/east.xpm
+
+F 1,9 ,255
+C 255 ,255,255
+
+
+111111111111
+111100001111
+111111N11
+1111000011111
+111111111111
