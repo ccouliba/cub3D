@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:55:31 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/22 22:54:40 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:34:39 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	init_config(t_config *config)
 {
 	config->direction = 0;
-	config->pos[0] = 0;
-	config->pos[1] = 0;
+	config->position[0] = 0;
+	config->position[1] = 0;
 	config->map_size[0] = 0;
 	config->map_size[1] = 0;
 	config->north = NULL;
@@ -43,13 +43,14 @@ static void	get_map_config(t_config *config)
 		{
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' ')
 			{
-				config->pos[0] = i;
-				config->pos[1] = j;
+				config->position[0] = i;
+				config->position[1] = j;
 			}
 			++j;
 		}
 		++i;
 	}
+	config->map_size[1] = j;
 }
 
 static int	check_arg_number(int ac)
@@ -93,8 +94,8 @@ int	parser(int ac, char **av, t_config *config)
 		return (print_error(MAP_ERROR, 2), 1);
 	get_map_config(config);
 	lines_length(config);
-	printf("direction : [%d]\n", config->direction);
-	printf("pos_X = [%d]\npos_Y = [%d]\n", config->pos[0], config->pos[1]);
-	printf("map_X = [%d]\nmap_Y = [%d]\n", config->map_size[0], config->map_size[1]);
+	// printf("direction : [%d]\n", config->direction);
+	// printf("pos_X = [%d]\npos_Y = [%d]\n", config->position[0], config->position[1]);
+	// printf("map_X = [%d]\nmap_Y = [%d]\n", config->map_size[0], config->map_size[1]);
 	return (free_double_p(line), EXIT_SUCCESS);
 }

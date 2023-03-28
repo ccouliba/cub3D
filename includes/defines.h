@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/20 21:01:09 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:42:41 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@
 /*
 ** Define mlx
 */
-# define OFFSET 64
-# define TEXT_HEIGHT 32
-# define TEXT_WIDTH 32
+// # define OFFSET 64
+# define TEXT_HEIGHT 64
+# define TEXT_WIDTH 64
 // # define MAP_WIDTH 32
 // # define MAP_HEIGHT 32
 # define WIDTH 1800

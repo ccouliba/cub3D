@@ -6,7 +6,7 @@
 #    By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/03/10 10:18:39 by ccouliba         ###   ########.fr        #
+#    Updated: 2023/03/28 12:06:14 by ccouliba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS =	srcs/main.c \
 		srcs/reading/gnl.c \
 		srcs/reading/read_file.c \
 		srcs/reading/gnl_utils.c \
-		srcs/ray_casting/raycasting.c \
+		srcs/raycasting/raycasting.c \
 		utils/lib_1.c \
 		utils/lib_2.c \
 		utils/list.c \

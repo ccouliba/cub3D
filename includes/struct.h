@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/22 22:59:49 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:39:53 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_mlx
 	int				bpp;
 	int				size_line;
 	int				endian;
-	// int				*texture[4];
+	int				texture[3][TEXT_WIDTH * TEXT_HEIGHT];
 	int				re_buf;
 	int				*addr;
 	int				**buf;
@@ -54,7 +54,7 @@ typedef struct s_flag
 typedef struct s_config
 {
 	int				direction;
-	int				pos[2];
+	int				position[2];
 	int				map_size[2];
 	char			*north;
 	char			*south;
@@ -71,7 +71,7 @@ typedef struct s_param
 	int		side;
 	int		color;
 	// int		texture;
-	// int		text_num;
+	int		text_num;
 	int		line_height;
 	int		map[2];
 	int		text[2];

@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/20 21:52:45 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/28 11:37:47 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # include "incs.h"
-# include "struct.h"
 # include "defines.h"
+# include "struct.h"
 # include "gnl.h"
 
 /******************************************************************************/
@@ -49,7 +49,7 @@ int			after_start_pos(char *line);
 void		my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
 
 void		draw(t_mlx *img);
-void		looping(t_game *game);
+void		looping(t_param *param, t_mlx *img, t_config *config);
 /******************************************************************************/
 /*********************************** UTILS ************************************/
 /******************************************************************************/
