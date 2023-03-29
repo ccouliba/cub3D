@@ -75,21 +75,19 @@ int	occurences(char *s, int c)
 	return (flag);
 }
 
-void	lines_length(t_config *config)
+void	map_size(t_config *config)
 {
 	int		i;
 	int		len;
-	char	**map;
 
 	i = 0;
-	map = config->map;
-	len = ft_strlen(map[i]);
+	len = ft_strlen(config->map[i]);
 	++i;
-	while (map[i])
+	while (config->map[i])
 	{
-		if (*map[i])
-			if (ft_strlen(map[i]) > ft_strlen(map[i - 1]))
-				config->map_size[1] = ft_strlen(map[i]);
+		if (*config->map[i])
+			if (ft_strlen(config->map[i]) >= ft_strlen(config->map[i - 1]))
+				config->map_size[1] = ft_strlen(config->map[i]);
 		++i;
 	}
 	config->map_size[0] = i;

@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:35:57 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/22 22:01:03 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:24:58 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int	check_surface_file(char *s)
 	i = 0;
 	while (tmp[i])
 	{
-		// printf("tmp[i] = [%s]- len = [%d]\n", tmp[i], ft_strlen(tmp[i]));
 		if (check_number(tmp[i]))
 			return (free_double_p(tmp), EXIT_FAILURE);
 		res = ft_atoi(tmp[i]);

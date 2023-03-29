@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/28 20:07:18 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/30 01:09:36 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static t_config	init_game(int ac, char **av)
 
 	if (parser(ac, av, &config))
 		exit(1);
-	printf("config.direction : [%c]\n", config.direction);
 	return (config);
 }
 
@@ -92,7 +91,7 @@ int	main(int ac, char **av)
 		return (1);
 	img.addr = (int *)mlx_get_data_addr(img.img, &img.bpp,
 			&img.size_line, &img.endian);
-	looping(&game.param, &game.img, &game.config);
+	looping(&game.param, &img, &config);
 	mlx_key_hook(img.win, get_key_code, &img);
 	mlx_hook(img.win, 17, 0L, exit_mlx, &img);
 	mlx_loop(img.mlx);

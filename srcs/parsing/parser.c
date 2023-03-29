@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:55:31 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/28 19:34:39 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:29:05 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_config(t_config *config)
 	config->map = (char **) NULL;
 }
 
-static void	get_map_config(t_config *config)
+static void	get_map_position(t_config *config)
 {
 	int		i;
 	int		j;
@@ -50,7 +50,6 @@ static void	get_map_config(t_config *config)
 		}
 		++i;
 	}
-	config->map_size[1] = j;
 }
 
 static int	check_arg_number(int ac)
@@ -92,10 +91,7 @@ int	parser(int ac, char **av, t_config *config)
 		return (print_error(PARSING_ERROR, 2), 1);
 	if (check_map(config, line))
 		return (print_error(MAP_ERROR, 2), 1);
-	get_map_config(config);
-	lines_length(config);
-	// printf("direction : [%d]\n", config->direction);
-	// printf("pos_X = [%d]\npos_Y = [%d]\n", config->position[0], config->position[1]);
-	// printf("map_X = [%d]\nmap_Y = [%d]\n", config->map_size[0], config->map_size[1]);
-	return (free_double_p(line), EXIT_SUCCESS);
+	get_map_position(config);
+	map_size(config);
+	return (/*free_double_p(line),*/ EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/28 19:51:04 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/30 01:07:56 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ static void	drawer(t_mlx *img)
 		++y;
 	}
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
+	printf("img->pos[0] : [%d]\n", (int)img->pos[0]);
+	printf("img->pos[1] : [%d]\n", (int)img->pos[1]);
 }
 
 static void	init_buffer(t_mlx *img)
@@ -164,8 +166,8 @@ static void	get_step(t_param *param, t_mlx *img)
 		param->side_dist[1] = (param->map[1] + 1.0 - img->pos[1])
 			* param->delta[1];
 	}
-	printf("img->pos[0] : [%d]\n", (int)img->pos[0]);
-	printf("img->pos[1] : [%d]\n", (int)img->pos[1]);
+	// printf("img->pos[0] : [%d]\n", (int)img->pos[0]);
+	// printf("img->pos[1] : [%d]\n", (int)img->pos[1]);
 }
 
 static void	handle_hits(t_param *param, t_config *config)
@@ -187,12 +189,12 @@ static void	handle_hits(t_param *param, t_config *config)
 			param->map[1] += param->step[1];
 			param->side = 1;
 		}
-		// printf("In loop [%d]\n", i++);
 		// printf("param->map[0] : [%d]\n", param->map[0]);
 		// printf("config->map[param->map[0]] : [%s]\n", config->map[0]);
-		// if (config->map[param->map[0]][param->map[1]] > 0)
-			// param->hit = 1;
+		if (config->map[param->map[0]][param->map[1]] > 0)
+			param->hit = 1;
 	}
+	// printf("config->map[param->map[0]][param->map[1]] : [%c]\n", config->map[param->map[0]][param->map[1]]);
 }
 
 static void	check_side(t_param *param, t_mlx *img)
@@ -208,7 +210,7 @@ static void	check_side(t_param *param, t_mlx *img)
 static void	height_to_draw(t_param *param, t_mlx *img)
 {
 	check_side(param, img);
-	printf("param->side : [%d]\n", param->side);
+	// printf("param->side : [%d]\n", param->side);
 	param->line_height = (int)(HEIGHT / param->perp_wall_dist);
 	param->draw[0] = -param->line_height / 2 + HEIGHT / 2;
 	if (param->draw[0] < 0)
@@ -226,7 +228,7 @@ static void	texture_calc(t_param *param, t_mlx *img, t_config *config)
 	else
 		param->wall = img->pos[0] + param->perp_wall_dist * param->raydir[0];
 	param->wall -= floor(param->wall);
-	printf("param->wall : [%f]\n", param->wall);
+	// printf("param->wall : [%f]\n", param->wall);
 }
 
 void	texturing(t_param *param, t_mlx *img, int x)
@@ -263,18 +265,18 @@ static void	calculator(t_param *param, t_mlx *img, t_config *config)
 
 	i = 0;
 	init_buffer(img);
-	printf("param->map[0] : [%d]\n", param->map[0]);
-	printf("config.direction : [%c]\n", config->direction);
 	while (i < WIDTH)
 	{
 		init_ray(param, img, i);
 		get_step(param, img);
+		printf("step1\n");
 		handle_hits(param, config);
 		height_to_draw(param, img);
 		texture_calc(param, img, config);
 		texturing(param, img, i);
 		++i;
 	}
+	printf("step2\n");
 }
 
 void	looping(t_param *param, t_mlx *img, t_config *config)

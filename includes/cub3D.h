@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/28 11:37:47 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/30 00:00:58 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			check_extension(char *s, char *extension);
 int			check_xpm_file(char *s);
 int			around_zero(char **line, int i, int j);
 int			occurences(char *s, int c);
-void		lines_length(t_config *config);
+void		map_size(t_config *config);
 
 int			check_char(char *line);
 int			check_walls(char *line);
