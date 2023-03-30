@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/28 19:39:53 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/30 05:54:55 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,9 @@
 
 typedef struct s_mlx
 {
-	double			pos[2];
-	double			dir_x;
-	double			dir_y;
-	double			plane_x;
-	double			plane_y;
-	double			move_speed;
-	double			rot_speed;
 	int				bpp;
 	int				size_line;
 	int				endian;
-	int				texture[3][TEXT_WIDTH * TEXT_HEIGHT];
 	int				re_buf;
 	int				*addr;
 	int				**buf;
@@ -67,22 +59,30 @@ typedef struct s_config
 
 typedef struct s_param
 {
-	int		hit;
-	int		side;
-	int		color;
 	// int		texture;
-	int		text_num;
-	int		line_height;
-	int		map[2];
-	int		text[2];
-	int		step[2];
-	int		draw[2];
-	double	cam;
-	double	wall;
-	double	perp_wall_dist;
-	double	delta[2];
-	double	raydir[2];
-	double	side_dist[2];
+	int				hit;
+	int				side;
+	int				text_num;
+	int				line_height;
+	int				map[2];
+	int				text[2];
+	int				step[2];
+	int				draw[2];
+	int				texture[3][TEXT_WIDTH * TEXT_HEIGHT];
+	double			pos[2];
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			move_speed;
+	double			rot_speed;
+	double			cam;
+	double			wall;
+	double			perp_wall_dist;
+	double			delta[2];
+	double			raydir[2];
+	double			side_dist[2];
+	unsigned int	color;
 }				t_param;
 
 typedef struct s_game
