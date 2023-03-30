@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/30 06:12:04 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:47:14 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	init_param(t_param *param, int *position)
 {
 	param->hit = 0;
 	param->side = 0;
-	param->color = 0;
 	// param->texture
 	param->text_num = 0;
 	param->line_height = 0;
@@ -152,10 +151,10 @@ static void	get_step(t_param *param)
 		param->delta[1] = 1e30;
 	else
 		param->delta[1] = fabs(1 / param->raydir[1]);
-	// param->delta[0] = fabs(1 / param->raydir[0]);
-	// param->delta[1] = fabs(1 / param->raydir[1]);
 	printf("get_step : param->delta[0] : [%.2f]\n", param->delta[0]);
 	printf("get_step : param->delta[1] : [%.2f]\n", param->delta[1]);
+	printf("get_step : param->pos[0] : [%d]\n", (int)param->pos[0]);
+	printf("get_step : param->pos[1] : [%d]\n\n", (int)param->pos[1]);
 	if (param->raydir[0] < 0)
 	{
 		param->step[0] = -1;
@@ -178,8 +177,6 @@ static void	get_step(t_param *param)
 		param->side_dist[1] = (param->map[1] + 1.0 - param->pos[1])
 			* param->delta[1];
 	}
-	printf("param->pos[0] : [%d]\n", (int)param->pos[0]);
-	printf("param->pos[1] : [%d]\n", (int)param->pos[1]);
 }
 
 static void	handle_hits(t_param *param, t_config *config)
@@ -201,64 +198,45 @@ static void	handle_hits(t_param *param, t_config *config)
 			param->map[1] += param->step[1];
 			param->side = 1;
 		}
-		// printf("param->map[0] : [%d]\n", param->map[0]);
-		printf("Handle_hits : config->map[param->map[0]][param->map[1]] : [%c]\n", config->map[param->map[0]][param->map[1]]);
 		if (config->map[param->map[0]][param->map[1]] > 0)
 			param->hit = 1;
-		printf("Handle_hits : param->hit : [%d]\n", param->hit);
 	}
-	printf("\n");
-	// printf("Handle_hits : config->map[param->map[0]][param->map[1]] : [%c]\n", config->map[param->map[0]][param->map[1]]);
+	printf("Handle_hits : config->map[param->map[0]][param->map[1]] : [%c]\n\n", config->map[param->map[0]][param->map[1]]);
 }
 
 /*
 ** for fish eye
 */
-// static void	set_perp_wall(t_param *param)
-// {
-// 	if (param->side == 0)
-// 		param->perp_wall_dist = param->side_dist[0] - param->delta[0];
-// 	else
-// 		param->perp_wall_dist = param->side_dist[1] - param->delta[1];
-// 	printf("set_perp_wall : param->perp_wall_dist : [%.2f]\n", param->perp_wall_dist);
-// 	printf("set_perp_wall : param->side_dist[1] : [%.2f]\n", param->side_dist[0]);
-// 	printf("set_perp_wall : param->side_dist[1] : [%.2f]\n", param->side_dist[1]);
-// 	printf("set_perp_wall : param->delta[1] : [%.2f]\n", param->delta[0]);
-// 	printf("set_perp_wall : param->delta[1] : [%.2f]\n", param->delta[1]);
-// 	printf("set_perp_wall : param->map[1] - param->pos[1] : [%d]\n", (int)(param->map[1] - param->pos[1]));
-// }
-
-void	set_param_draw(t_param *param, int line_height)
+static void	fish_eye_effect(t_param *param)
 {
-	param->line_height = (int)(HEIGHT / param->perp_wall_dist);
+	if (param->side == 0)
+		param->perp_wall_dist = param->side_dist[0] - param->delta[0];
+	else
+		param->perp_wall_dist = param->side_dist[1] - param->delta[1];
+	printf("fish_eye_effect : param->perp_wall_dist : [%.2f]\n", param->perp_wall_dist);
+	printf("fish_eye_effect : param->side_dist[0] : [%.2f]\n", param->side_dist[0]);
+	printf("fish_eye_effect : param->side_dist[1] : [%.2f]\n", param->side_dist[1]);
+	printf("fish_eye_effect : param->delta[0] : [%.2f]\n", param->delta[0]);
+	printf("fish_eye_effect : param->delta[1] : [%.2f]\n\n", param->delta[1]);
+}
+
+void	set_line_to_draw(t_param *param, int line_height)
+{
 	param->draw[0] = -line_height / 2 + HEIGHT / 2;
 	if (param->draw[0] < 0)
 		param->draw[0] = 0;
 	param->draw[1] = line_height / 2 + HEIGHT / 2;
 	if (param->draw[1] >= HEIGHT)
 		param->draw[1] = HEIGHT - 1;
-	printf("set_param_draw : param->draw[0] : [%d]\n", param->draw[0]);
-	printf("set_param_draw : param->draw[1] : [%d]\n\n", param->draw[1]);
+	printf("set_line_to_draw : param->draw[0] : [%d]\n", param->draw[0]);
+	printf("set_line_to_draw : param->draw[1] : [%d]\n\n", param->draw[1]);
 }
 
-static void	height_to_draw(t_param *param, t_config *config)
+static void	height_to_draw(t_param *param)
 {
-	printf("Height_to_draw\n");
-	// set_perp_wall(param);
-	set_param_draw(param, param->line_height);
-	if (config->map[param->map[0]][param->map[1]])
-	{
-		if (config->map[param->map[0]][param->map[1]] == 0)
-			param->color = 0;
-		else if (config->map[param->map[0]][param->map[1]] == 1)
-			param->color = 255;
-		printf("Height_to_draw : param->color : [%d]\n", param->color);
-
-		if (param->side == 1)
-			param->color = param->color / 2;
-		// here draw vertical line to draw[0] to draw[1];
-	}
-	printf("\n");
+	fish_eye_effect(param);
+	param->line_height = (int)(HEIGHT / param->perp_wall_dist);
+	set_line_to_draw(param, param->line_height);
 }
 
 static void	texture_calc(t_param *param, t_config *config)
@@ -274,35 +252,37 @@ static void	texture_calc(t_param *param, t_config *config)
 	param->wall -= floor(param->wall);
 }
 
-void	texturing(t_param *param, t_mlx *img, int x)
+void	texture_coordonate(t_param *param, t_mlx *img, int x)
 {
-	int			i;
-	double		step;
-	double		text_pos;
+	int				i;
+	double			step;
+	double			text_pos;
+	unsigned int	color;
 
-	printf("Texturing_0\n");
-	step = 1.0 * TEXT_HEIGHT / param->line_height;
-	text_pos = (param->draw[0] - HEIGHT / 2 + param->line_height / 2) * step;
 	param->text[0] = (int)(param->wall * (double)TEXT_WIDTH);
 	if (param->side == 0 && param->raydir[0] > 0)
 		param->text[0] = TEXT_WIDTH - param->text[0] - 1;
 	if (param->side == 1 && param->raydir[1] < 0)
 		param->text[1] = TEXT_WIDTH - param->text[0] - 1;
+	step = 1.0 * TEXT_HEIGHT / param->line_height;
+	text_pos = (param->draw[0] - HEIGHT / 2 + param->line_height / 2) * step;
 	i = param->draw[0];
-	// printf("\ti : [%d]\n", i);(int)
+	printf("texture_coordonate : param->draw[0] : [%d]\ntexture_coordonate : param->draw[1] : [%d]\n", param->draw[0], param->draw[1]);
+	printf("texture_coordonate : param->text_num : [%d]\n", param->text_num);
+	printf("texture_coordonate : text_pos : [%.2f]\n\n", text_pos);
 	while (i < param->draw[1])
 	{
 		param->text[1] = (int)text_pos & (TEXT_HEIGHT - 1);
 		text_pos += step;
-		param->color = param->texture[param->text_num]
+		color = param->texture[param->text_num]
 		[TEXT_WIDTH * param->text[1] + param->text[0]];
 		if (param->side == 1)
-			param->color = (param->color >> 1) & 8355711;
-		img->buf[i][x] = param->color;
-		printf("\timg->buf[i][x] : [%d]\n", img->buf[i][x]);
+			color = (color >> 1) & 8355711;
+		img->buf[i][x] = color;
+		printf("texture_coordonate : color : [%u]\n", color);
+		printf("texture_coordonate : img->buf[i][x] : [%d]\n\n", img->buf[i][x]);
 		++i;
 	}
-	printf("\n");
 }
 
 static void	calculator(t_param *param, t_mlx *img, t_config *config)
@@ -311,16 +291,16 @@ static void	calculator(t_param *param, t_mlx *img, t_config *config)
 
 	i = 0;
 	init_buffer(img);
-	printf("Calculator : param->color : [%d]\n\n", param->color);
 	while (i < WIDTH)
 	{
 		init_ray(param, i);
 		get_step(param);
 		handle_hits(param, config);
-		height_to_draw(param, config);
+		height_to_draw(param);
 		texture_calc(param, config);
-		// printf("tbefore texturing fct\n");
-		texturing(param, img, i);
+		printf("calculator : before texture_coordonate fct\n\n");
+		texture_coordonate(param, img, i);
+		printf("calculator : after texture_coordonate fct\n\n");
 		++i;
 	}
 	// printf("\n");

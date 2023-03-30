@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/30 05:54:55 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:35:02 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ typedef struct s_param
 	double			delta[2];
 	double			raydir[2];
 	double			side_dist[2];
-	unsigned int	color;
 }				t_param;
 
 typedef struct s_game
