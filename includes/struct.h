@@ -3,18 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/22 22:59:49 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:10:42 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+typedef struct s_ray
+{
+	double	x;
+	double	y;
+	double	dx;
+	double	dy;
+	double	rayCos;
+	double	raySin;
+	double	angle;
+}				t_ray;
+
 typedef struct s_mlx
 {
+	t_ray			ray;
+	double			width;
+	double			lenght;
+	double			angle;
+	double			p_x;
+	double			p_y;
 	double			pos[2];
 	double			dir_x;
 	double			dir_y;
