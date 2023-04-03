@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/02 19:12:52 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:28:19 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_mlx(t_mlx *img)
 {
-	img->angle = -30;
+	img->angle = 0;
 	img->pos[0] = 0;
 	img->pos[1] = 0;
 	img->dir_x = 0;
