@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+         #
+#    By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/04/02 19:35:28 by ngenadie         ###   ########.fr        #
+#    Updated: 2023/04/04 15:13:37 by ngenadie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ CFLAGS 		= -Wall -Wextra -Werror -g3 #-fsanitize=address
 LIBMLX	:=	$(addprefix $(PATH_MLX), $(LIBMLX))
 
 SRCS =	srcs/main.c \
+		srcs/ray_casting/rc_utils.c \
 		srcs/ray_casting/niki_cast.c \
 		srcs/parsing/parser.c \
 		srcs/parsing/check_file.c \
