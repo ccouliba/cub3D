@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/28 19:42:41 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:19:13 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define ROTATE_LEFT 65361
 # define ROTATE_RIGHT 65363
 # define ESC 65307
+# define X_EVENT_KEY_PRESS	2
 
 /*
 ** Define error type

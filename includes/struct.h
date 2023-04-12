@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/30 22:35:02 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:15:11 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_mlx
 	void			*mlx;
 	void			*win;
 	void			*img;
+	int				img_width;
+	int				img_height;
 
 }				t_mlx;
 
@@ -68,7 +70,7 @@ typedef struct s_param
 	int				text[2];
 	int				step[2];
 	int				draw[2];
-	int				texture[3][TEXT_WIDTH * TEXT_HEIGHT];
+	int				texture[4][TEXT_WIDTH * TEXT_HEIGHT];
 	double			pos[2];
 	double			dir_x;
 	double			dir_y;

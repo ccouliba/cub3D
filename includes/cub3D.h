@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/30 00:00:58 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:25:08 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int			after_start_pos(char *line);
 void		my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
 
 void		draw(t_mlx *img);
-void		looping(t_param *param, t_mlx *img, t_config *config);
+int			looping(t_param *param, t_mlx *img, t_config *config);
+void		load_texture(t_mlx *img, t_param *param);
+
 /******************************************************************************/
 /*********************************** UTILS ************************************/
 /******************************************************************************/

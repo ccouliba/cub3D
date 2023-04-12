@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/30 04:02:41 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:23:32 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,14 @@ int	main(int ac, char **av)
 		++i;
 	}
 	config = init_game(ac, av);
-	int	k = 0;
-	while (config.map[k])
-		printf("config.map[k] : [%s]\n", config.map[k++]);
+	// int	k = 0;
+	// while (config.map[k])
+	// 	printf("config.map[k] : [%s]\n", config.map[k++]);
 	img.mlx = mlx_init();
 	if (!img.mlx)
 		return (1);
 	check_win_size(WIDTH, HEIGHT);
+	load_texture(&img, &game.param);
 	img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "cub3D");
 	if (!img.win)
 		return (1);
@@ -91,9 +92,11 @@ int	main(int ac, char **av)
 		return (1);
 	img.addr = (int *)mlx_get_data_addr(img.img, &img.bpp,
 			&img.size_line, &img.endian);
-	looping(&game.param, &img, &config);
-	mlx_key_hook(img.win, get_key_code, &img);
-	mlx_hook(img.win, 17, 0L, exit_mlx, &img);
+	// looping(&game.param, &img, &config);
+	mlx_loop_hook(img.mlx, &looping, &img);
+	// mlx_key_hook(img.win, get_key_code, &img);
+	mlx_hook(img.win, X_EVENT_KEY_PRESS, 0, &get_key_code, &img);
+	// mlx_hook(img.win, 17, 0L, exit_mlx, &img);
 	mlx_loop(img.mlx);
 	return (0);
 }
