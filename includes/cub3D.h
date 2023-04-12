@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/04 15:15:00 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:35:37 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void		looping(t_game *game);
 void        increment_ray(t_ray *ray);
 double      distance(t_mlx mlx);
 double      deg2rad(double deg);
+void        color_line(t_mlx *mlx, int x, int y, int color);
+void	    init_mlx(t_mlx *img);
 
 /******************************************************************************/
 /*********************************** UTILS ************************************/

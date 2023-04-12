@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/20 21:01:09 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:08:32 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@
 # define TEXT_WIDTH 32
 // # define MAP_WIDTH 32
 // # define MAP_HEIGHT 32
-# define WIDTH 1800
-# define HEIGHT 960
+# define WIDTH 2560
+# define HEIGHT 1440
 
 #endif

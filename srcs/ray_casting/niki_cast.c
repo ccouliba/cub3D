@@ -12,7 +12,6 @@ int raycasting(t_mlx *mlx)
     int i;
 
     i = 0;
-    printf("WIDTH = %d, HEIGHT = %d\n", WIDTH, HEIGHT);
     init_ray(mlx);
     while (i < WIDTH)
     {
@@ -22,11 +21,10 @@ int raycasting(t_mlx *mlx)
         mlx->ray.raySin = sin(deg2rad(mlx->ray.angle) / 64);
         while (mlx->ray.dx < 90)
             increment_ray(&mlx->ray);
-        printf("ray_x = %f\n", mlx->ray.dx);
-        printf("ray_y = %f\n", mlx->ray.dy);
-        printf("distance = %f\n", distance(*mlx));
-        printf("angle = %f\n", mlx->ray.angle);
-        mlx->ray.angle += 60 / (double)1800;
+        color_line(mlx, i, 0, distance(*mlx) * cos(deg2rad(mlx->ray.angle - mlx->angle)));
+        if (i % 10 == 0)
+            printf("distance2 = %f\n", distance(*mlx) * cos(deg2rad(mlx->ray.angle - mlx->angle)));
+        mlx->ray.angle += 60 / (double)WIDTH;
         i++;
     }
     return (0);

@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/02 19:10:42 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:21:59 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_mlx
 	int				endian;
 	// int				*texture[4];
 	int				re_buf;
-	int				*addr;
+	char			*addr;
 	int				**buf;
 	void			*mlx;
 	void			*win;

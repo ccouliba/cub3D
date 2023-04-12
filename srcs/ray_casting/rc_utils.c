@@ -7,11 +7,7 @@ double deg2rad(double deg)
 
 double distance(t_mlx mlx)
 {
-    printf("lodev = %f\n", sqrt(1 + pow(mlx.pos[1] - mlx.ray.dy, 2) / pow(mlx.pos[0] - mlx.ray.dx, 2)));    
-    printf("lodev = %f\n", sqrt(1 + pow(mlx.pos[0] - mlx.ray.dx, 2) / pow(mlx.pos[1] - mlx.ray.dy, 2)));    
-    printf("pow2=%f\n", (pow(mlx.pos[0] - mlx.ray.dx, 2)));
-    printf("pow2=%f\n", (pow(mlx.pos[1] - mlx.ray.dy, 2)));
-    return ((pow(mlx.pos[0] - mlx.ray.dx, 2) + pow(mlx.pos[1] - mlx.ray.dy, 2)));
+    return (sqrt(pow(mlx.pos[0] - mlx.ray.dx, 2) + pow(mlx.pos[1] - mlx.ray.dy, 2)));
 }
 
 void increment_ray(t_ray *ray)
