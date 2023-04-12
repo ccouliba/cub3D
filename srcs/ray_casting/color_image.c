@@ -2,15 +2,23 @@
 
 void    color_line(t_mlx *mlx, int x, int y, int distance)
 {
-    int *adr;
-    int i;
-    
-    (void)y;
-    i = 0;
-    while (i < distance)
-    {
-        adr = (int *)(mlx->addr + (x * mlx->size_line + i * (mlx->bpp / 8)));
-        *adr = 1 << 15;
-        i++;
+	int	*adr;
+	int	i;
+	int	j;
+
+	(void)y;
+	(void)x;
+	(void)distance;
+	i = 0;
+	j = 0;
+	while (i < HEIGHT)
+	{
+		while (j < WIDTH)
+		{
+			adr = (int *)(mlx->addr + (j * mlx->size_line + i * (mlx->bpp / 8)));
+			*adr = 1 << 15;
+			j++;
+		}
+		i++;
     }
 }
