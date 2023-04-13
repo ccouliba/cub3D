@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/12 23:56:42 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:24:58 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,30 +61,56 @@
 // 	param->side_dist[1] = 0.0;
 // }
 
-void	putpixel(t_mlx *img, int x, int y, int color)
-{
-	void	*dst;
+// void	putpixel(t_mlx *img, int x, int y, int color)
+// {
+// 	void	*dst;
 
-	dst = (int *)(img->addr + (y * img->size_line + x * (img->bpp / 8)));
-	*(unsigned int *)dst = color;
-}
+// 	dst = (int *)(img->addr + (y * img->size_line + x * (img->bpp / 8)));
+// 	*(unsigned int *)dst = color;
+// }
 
-void	color_pixel(t_mlx *img, int *p)
+// void	color_pixel(t_mlx *img, int *p)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	(void)p;
+// 	i = 0;
+// 	j = 0;
+// 	while (i < WIDTH)
+// 	{
+// 		j = 0;
+// 		while (j < HEIGHT)
+// 		{
+// 			putpixel(img, i, j, 1 << 15);
+// 			++j;
+// 		}
+// 		++i;
+// 	}
+// }
+
+void    color_pixel(t_mlx *mlx, int *distance)
 {
+	char *adr;
 	int	i;
 	int	j;
 
-	(void)p;
+	// (void)y;
+	// (void)x;
+	(void)distance;
 	i = 0;
 	j = 0;
+	adr = malloc(sizeof(unsigned int ));
 	while (i < WIDTH)
 	{
-		j = 0;
 		while (j < HEIGHT)
 		{
-			putpixel(img, i, j, 1 << 15);
-			++j;
+			adr = (int *)(mlx->addr + (j * mlx->size_line + i * (mlx->bpp / 8)));
+			if (!*adr)
+				return ;
+			*adr = 1 << 15;
+			j++;
 		}
-		++i;
-	}
+		i++;
+    }
 }
