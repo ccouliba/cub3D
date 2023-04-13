@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/12 19:15:56 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:56:01 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,9 @@ int	main(int ac, char **av)
 			&img.size_line, &img.endian);
 	if (!img.addr)
 		return (printf("No Address\n"), 1);
-	color_line(&img, 800, 800, 100);
-	//raycasting(&img);
+	//color_vline(&img, 800, 100);
+	color_line(&img, 800, 100);
+	raycasting(&img);
 	mlx_key_hook(img.win, get_key_code, &img);
 	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
 	// mlx_hook(img.win, 17, 0L, exit_mlx, &img);
