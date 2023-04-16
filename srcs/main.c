@@ -6,11 +6,22 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/13 14:56:01 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:16:57 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void	printf_map(t_game game)
+{
+	int i;
+
+	i = -1;
+	printf("map = \n");
+	while (++i < game.config.map_size[1])
+		printf("map[i] = %s\n", game.config.map[i]);
+}
+
 
 static t_config	init_game(int ac, char **av)
 {
@@ -92,9 +103,9 @@ int	main(int ac, char **av)
 			&img.size_line, &img.endian);
 	if (!img.addr)
 		return (printf("No Address\n"), 1);
-	//color_vline(&img, 800, 100);
 	color_line(&img, 800, 100);
-	raycasting(&img);
+	printf_map(game);
+	raycasting(&game);
 	mlx_key_hook(img.win, get_key_code, &img);
 	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
 	// mlx_hook(img.win, 17, 0L, exit_mlx, &img);
