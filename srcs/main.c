@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/16 19:16:57 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:45:16 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	printf_map(t_game game)
 
 	i = -1;
 	printf("map = \n");
-	while (++i < game.config.map_size[1])
-		printf("map[i] = %s\n", game.config.map[i]);
+	while (++i < game.config.map_size[0])
+		dprintf(2, "map[%d] = %s\n", i, game.config.map[i]);
 }
 
 
@@ -62,16 +62,16 @@ int	main(int ac, char **av)
 {
 	int		i;
 	int		j;
-	t_mlx	img;
+	t_mlx	*img;
 	t_game	game;
 
 	img = game.img;
-	init_mlx(&img);
-	img.buf = (int **)malloc(sizeof(int *) * HEIGHT);
+	init_mlx(img);
+	img->buf = (int **)malloc(sizeof(int *) * HEIGHT);
 	i = 0;
 	while (i < HEIGHT)
 	{
-		img.buf[i] = (int *)malloc(sizeof(int) * WIDTH);
+		img->buf[i] = (int *)malloc(sizeof(int) * WIDTH);
 		++i;
 	}
 	i = 0;
@@ -80,35 +80,35 @@ int	main(int ac, char **av)
 		j = 0;
 		while (j < WIDTH)
 		{
-			img.buf[i][j] = 0;
+			img->buf[i][j] = 0;
 			++j;
 		}
 		++i;
 	}
 	game.config = init_game(ac, av);
-	init_mlx(&game.img);
+	init_mlx(img);
 	// if (game.config == NULL
 		// return (exit(1), 1);
-	img.mlx = mlx_init();
-	if (!img.mlx)
+	img->mlx = mlx_init();
+	if (!img->mlx)
 		return (1);
 	check_win_size(WIDTH, HEIGHT);
-	img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "cub3D");
-	if (!img.win)
+	img->win = mlx_new_window(img->mlx, WIDTH, HEIGHT, "cub3D");
+	if (!img->win)
 		return (printf("No Window\n"), 1);
-	img.img = mlx_new_image(img.mlx, WIDTH, HEIGHT);
-	if (!img.img)
+	img->img = mlx_new_image(img->mlx, WIDTH, HEIGHT);
+	if (!img->img)
 		return (printf("No Image\n"), 1);
-	img.addr = (char *)mlx_get_data_addr(img.img, &img.bpp,
-			&img.size_line, &img.endian);
-	if (!img.addr)
+	img->addr = (char *)mlx_get_data_addr(img->img, &img->bpp,
+			&img->size_line, &img->endian);
+	if (!img->addr)
 		return (printf("No Address\n"), 1);
-	color_line(&img, 800, 100);
+	color_line(img, 800, 100);
 	printf_map(game);
 	raycasting(&game);
-	mlx_key_hook(img.win, get_key_code, &img);
-	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
-	// mlx_hook(img.win, 17, 0L, exit_mlx, &img);
-	mlx_loop(img.mlx);
+	mlx_key_hook(img->win, get_key_code, &img);
+	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
+	// mlx_hook(img->win, 17, 0L, exit_mlx, &img);
+	mlx_loop(img->mlx);
 	return (0);
 }

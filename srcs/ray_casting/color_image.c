@@ -26,35 +26,22 @@ void    color_line(t_mlx *mlx, int y, int distance)
 	}
 }
 
-//void	color_vline(t_mlx *mlx, int x, double distance)
-//{
-//	int	*adr;
-//	int	j;
-//
-//	(void)distance;
-//	j = 0;
-//	while (j < HEIGHT)
-//	{
-//		adr = (int *)(mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
-//		*adr = 1 << 23;
-//		j++;
-//	}
-//}
-
 void	color_vline(t_mlx *mlx, int x, double distance)
 {
 	int	*adr;
 	int	j;
 	int	wall_h;
 
-	//printf("min = %p, max = %p\n", mlx->addr, mlx->addr + (WIDTH * mlx->size_line + HEIGHT * (mlx->bpp / 8)));
-	//printf("HEIGHT/2 = %d, distance = %f\n", HEIGHT / 2, distance);
-	//printf("wall_h = %d\nj = %d\n", wall_h, HEIGHT / 2 - wall_h);
 	wall_h = HEIGHT / 2 / distance;
 	j = HEIGHT / 2 - wall_h;
+	printf("min = %p, max = %p\n", mlx->addr, mlx->addr + (WIDTH * mlx->size_line + HEIGHT * (mlx->bpp / 8)));
+	printf("HEIGHT/2 = %d, distance = %f\n", HEIGHT / 2, distance);
+	printf("wall_h = %d\nj = %d\n", wall_h, HEIGHT / 2 - wall_h);
 	while (j < HEIGHT / 2 + wall_h)
 	{
-	//	printf("adr = %p\n", mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
+		printf("addr = %p\n", mlx->addr);
+		printf("j.. * ..x = %d\n", (j * mlx->size_line + x * (mlx->bpp / 8)));
+		printf("adr = %p\n", mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
 		adr = (int *)(mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
 		*adr = 1 << 23;
 		j++;

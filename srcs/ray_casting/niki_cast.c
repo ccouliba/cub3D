@@ -9,25 +9,25 @@ int	hit_wall(t_game *game, int i)
 
 	map = game->config.map;
 	mlx = &game->img;
-	printf("diffy = %d\n", (int)(mlx->p_y - (int)mlx->ray.dy));
-	printf("diffx = %d\n", (int)(mlx->p_x - (int)mlx->ray.dx));
+
+	dprintf(2, "---------------------------\n");
+	dprintf(2, "x = %f, y = %f\n", mlx->ray.dx, mlx->ray.dy);
 	if ((int)(mlx->p_y - (int)mlx->ray.dy))
-		if (map[(int)mlx->ray.dx][(int)mlx->ray.dy] == 1 &&
-			map[(int)mlx->ray.dx + 1][(int)mlx->ray.dy] == 1)
-		{
-			color_vline(mlx, i, disty(*mlx));
-			return (1);
-		}
+	{
+		dprintf(2, " map[%d][%d] = %c\n", (int)mlx->ray.dy, (int)mlx->ray.dx, map[(int)mlx->ray.dy][(int)mlx->ray.dx]);
+		dprintf(2, "+map[%d][%d] = %c\n", (int)mlx->ray.dy, (int)mlx->ray.dx + 1, map[(int)mlx->ray.dy][(int)mlx->ray.dx + 1]);
+		if (map[(int)mlx->ray.dy][(int)mlx->ray.dx] == '1' &&
+			map[(int)mlx->ray.dy][(int)mlx->ray.dx + 1] == '1')
+			return (color_vline(mlx, i, disty(*mlx)), 1);
+	}
 	if ((int)(mlx->p_x - (int)mlx->ray.dx))
 	{
-		printf("mlx->ray.dx = %d, mlx->ray.y = %d\n", (int)mlx->ray.dx, (int)mlx->ray.dy);
-		if (map[(int)mlx->ray.dx][(int)mlx->ray.dy] == 1 &&
-			map[(int)mlx->ray.dx][(int)mlx->ray.dy + 1] == 1)
-		{
-			color_vline(mlx, i, distx(*mlx));
-			return (1);
-		}
-	}	
+		dprintf(2, " map[%d][%d] = %c\n", (int)mlx->ray.dy, (int)mlx->ray.dx, map[(int)mlx->ray.dy][(int)mlx->ray.dx]);
+		dprintf(2, "+map[%d][%d] = %c\n", (int)mlx->ray.dy + 1, (int)mlx->ray.dx, map[(int)mlx->ray.dy + 1][(int)mlx->ray.dx]);
+		if (map[(int)mlx->ray.dy][(int)mlx->ray.dx] == '1' &&
+			map[(int)mlx->ray.dy + 1][(int)mlx->ray.dx] == '1')
+			return (color_vline(mlx, i, distx(*mlx)), 1);
+	}
 	return (0);
 }
 
@@ -43,17 +43,23 @@ int	raycasting(t_game *game)
 	i = 0;
 
 	mlx = &game->img;
+	mlx->p_x = game->config.pos[1];
+	mlx->p_y = game->config.pos[0];
+	printf("map size1 = %d\n", game->config.map_size[1]);
+	printf("map size0 = %d\n", game->config.map_size[0]);
+	printf("GAME_addr = %p\n", game->img.addr);
 	init_ray(mlx);
+	dprintf(2, "posx = %f. posy = %f\n", mlx->p_x, mlx->p_y);
 	while (i < WIDTH)
 	{
-		mlx->ray.dx = mlx->pos[0];
-		mlx->ray.dy = mlx->pos[1];
+		mlx->ray.dx = mlx->p_x;
+		mlx->ray.dy = mlx->p_y;
 		mlx->ray.rayCos = cos(deg2rad(mlx->ray.angle) / 64);
 		mlx->ray.raySin = sin(deg2rad(mlx->ray.angle) / 64);
 		while (!hit_wall(game, i))
 			increment_ray(&mlx->ray);
 		if (i % 50 == 0)
-			printf("dx = %d\ndy = %f\n", (int)mlx->ray.dx, mlx->ray.dy);
+			dprintf(1, "dx = %d\ndy = %f\n", (int)mlx->ray.dx, mlx->ray.dy);
 		mlx->ray.angle += 100 / (double)WIDTH;
 		i++;
 	}
