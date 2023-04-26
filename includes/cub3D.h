@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/12 23:53:50 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:00:12 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,12 @@ void		ft_lst_prevlast(t_list **list);
 void		ft_lstadd_back(t_list **alst, t_list *new);
 void		free_elem(t_list *elem, void (*clr)());
 void		free_stack(t_list **stack, void (*clr)());
+
+/*
+** Garbage collector
+*/
+t_gc		*_garbage(void);
+void		*push_top(t_gc **head, size_t data_size);
+void		gc_free(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/11 16:15:11 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:56:04 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,12 @@ typedef struct s_param
 	double			raydir[2];
 	double			side_dist[2];
 }				t_param;
+
+typedef struct s_gc
+{
+	void			*addr;
+	struct s_gc		*next;
+}				t_gc;
 
 typedef struct s_game
 {

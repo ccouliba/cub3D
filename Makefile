@@ -6,7 +6,7 @@
 #    By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/03/28 12:06:14 by ccouliba         ###   ########.fr        #
+#    Updated: 2023/04/26 19:04:25 by ccouliba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRCS =	srcs/main.c \
 		utils/list.c \
 		utils/ft_split.c \
 		utils/print_error.c \
-		utils/free_utils.c
+		utils/free_utils.c \
+		utils/singleton.c
 
 OBJS = $(SRCS:.c=.o)
 

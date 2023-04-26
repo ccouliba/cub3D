@@ -61,6 +61,32 @@ int	around_zero(char **line, int i, int j)
 	return (EXIT_SUCCESS);
 }
 
+int	around_char(char **line, int i, int j)
+{
+	char	*charset;
+
+	if (line[i][j] == ' ')
+		charset = "1 ";
+	else
+		charset = "01NSWE";
+
+	if (!line[i][j - 1] || !ft_strchr("01NSWE", line[i][j - 1]))
+		return (EXIT_FAILURE);
+	if (!line[i - 1][j - 1] || !ft_strchr("01NSWE", line[i - 1][j - 1]))
+		return (EXIT_FAILURE);
+	if (!line[i - 1][j] || !ft_strchr("01NSWE", line[i - 1][j]))
+		return (EXIT_FAILURE);
+	if (!line[i - 1][j + 1] || !ft_strchr("01NSWE", line[i - 1][j + 1]))
+		return (EXIT_FAILURE);
+	if (!line[i + 1] || !line[i + 1][j - 1] || !ft_strchr("01NSWE", line[i + 1][j - 1]))
+		return (EXIT_FAILURE);
+	if (!line[i + 1] || !line[i + 1][j] || !ft_strchr("01NSWE", line[i + 1][j]))
+		return (EXIT_FAILURE);
+	if (!line[i + 1] || !line[i + 1][j + 1] || !ft_strchr("01NSWE", line[i + 1][j + 1]))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 int	occurences(char *s, int c)
 {
 	int	flag;

@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 03:38:28 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/10 01:35:34 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/26 19:03:06 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,16 @@ char	**ft_split(char *s, char c)
 {
 	char	**split;
 	int		i;
+	t_gc	*gc;
 
 	if (!s)
 		return (NULL);
+	gc = _garbage();
 	i = word_nb((char *)s, c);
-	split = (char **)malloc(sizeof(char *) * (i + 1));
+	// split = (char **)malloc(sizeof(char *) * (i + 1));
+	split = (char **)push_top(&gc, sizeof(char *) * (i + 1));
 	if (!split)
-		return (NULL);
+		return (gc_free(), NULL);
 	i = 0;
 	while (*s)
 	{

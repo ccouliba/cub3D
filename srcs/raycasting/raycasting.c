@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 08:43:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/13 18:24:58 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:56:37 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,25 +92,26 @@
 void    color_pixel(t_mlx *mlx, int *distance)
 {
 	char *adr;
-	int	i;
-	int	j;
+	// int	i;
+	// int	j;
 
 	// (void)y;
 	// (void)x;
 	(void)distance;
-	i = 0;
-	j = 0;
+	(void)mlx;
+	// i = 0;
+	// j = 0;
 	adr = malloc(sizeof(unsigned int ));
-	while (i < WIDTH)
-	{
-		while (j < HEIGHT)
-		{
-			adr = (int *)(mlx->addr + (j * mlx->size_line + i * (mlx->bpp / 8)));
-			if (!*adr)
-				return ;
-			*adr = 1 << 15;
-			j++;
-		}
-		i++;
-    }
+	// while (i < WIDTH)
+	// {
+	// 	while (j < HEIGHT)
+	// 	{
+	// 		adr = (int *)(mlx->addr + (j * mlx->size_line + i * (mlx->bpp / 8)));
+	// 		if (!*adr)
+	// 			return ;
+	// 		// *adr = 1 << 15;
+	// 		j++;
+	// 	}
+	// 	i++;
+    // }
 }
