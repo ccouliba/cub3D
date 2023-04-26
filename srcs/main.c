@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/22 20:45:16 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:09:05 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ static int	get_key_code(int key_code, t_mlx *mlx)
 	return (EXIT_SUCCESS);
 }
 
-static void	check_win_size(int width, int height)
-{
-	if (!width || !height)
-		print_error(WRONG_SIZE, 2);
-	if (width < 1000 || width > INT_MAX || height < 480 || height > INT_MAX)
-		print_error(WRONG_SIZE, 2);
-	else
-		return ;
-}
+ static void	check_win_size(int width, int height)
+ {
+ 	if (!width || !height)
+ 		print_error(WRONG_SIZE, 2);
+ 	if (width < 1000 || width > INT_MAX || height < 480 || height > INT_MAX)
+ 		print_error(WRONG_SIZE, 2);
+ 	else
+ 		return ;
+ }
 
 int	main(int ac, char **av)
 {
@@ -65,8 +65,9 @@ int	main(int ac, char **av)
 	t_mlx	*img;
 	t_game	game;
 
-	img = game.img;
-	init_mlx(img);
+	img = &game.img;
+	ft_bzero(img, sizeof(t_mlx));
+	game.config = init_game(ac, av);
 	img->buf = (int **)malloc(sizeof(int *) * HEIGHT);
 	i = 0;
 	while (i < HEIGHT)
@@ -85,10 +86,8 @@ int	main(int ac, char **av)
 		}
 		++i;
 	}
-	game.config = init_game(ac, av);
-	init_mlx(img);
-	// if (game.config == NULL
-		// return (exit(1), 1);
+	//if (game.config == NULL)
+	//	return (exit(1), 1);
 	img->mlx = mlx_init();
 	if (!img->mlx)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/12 15:21:59 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:57:43 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ typedef struct s_ray
 	double	y;
 	double	dx;
 	double	dy;
+	double	last_x;
+	double	last_y;
 	double	rayCos;
 	double	raySin;
 	double	angle;
