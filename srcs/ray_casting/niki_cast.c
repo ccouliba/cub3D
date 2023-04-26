@@ -5,27 +5,20 @@
 
 int	hit_wall(t_game *game, int i)
 {
-	static double last_x = 0;
-	static double last_y = 0;
 	t_mlx	*mlx;
 	char	**map;
 
 	map = game->config.map;
 	mlx = &game->img;
-	if (last_x == 0 && last_y == 0)
-	{
-		last_x = mlx->p_x;
-		last_y = mlx->p_y;
-	}
 	//if (i % 50 == 0)
 	//	dprintf(2, "i = %d\n", i);
 	//dprintf(2, "---------------------------\n");
 	//dprintf(2, "x = %f, y = %f\n", mlx->ray.dx, mlx->ray.dy);
-	if ((int)floor(mlx->ray.dy) < game->config.map_size[0] && (int)floor(last_y) - (int)floor(mlx->ray.dy) &&
+	if ((int)floor(mlx->ray.dy) < game->config.map_size[0] && (int)floor(mlx->ray.last_y) - (int)floor(mlx->ray.dy) &&
 		(int)floor(mlx->ray.dx) < ft_strlen(game->config.map[(int)floor(mlx->ray.dy)]))
 	{
 		//dprintf(2, "Last_y = %d, d_y = %d\n", (int)last_y, (int)mlx->ray.dy);
-		last_y = mlx->ray.dy;
+		mlx->ray.last_y = mlx->ray.dy;
 		if (map[(int)floor(mlx->ray.dy)][(int)floor(mlx->ray.dx)] == '1')
 		{
 			//if (i % 25 == 0)
@@ -33,11 +26,11 @@ int	hit_wall(t_game *game, int i)
 			return (color_vline(mlx, i, disty(*mlx)), 1);
 		}
 	}
-	if ((int)floor(mlx->ray.dy) < game->config.map_size[0] && (int)floor(last_x) - (int)floor(mlx->ray.dx) &&
+	if ((int)floor(mlx->ray.dy) < game->config.map_size[0] && (int)floor(mlx->ray.last_x) - (int)floor(mlx->ray.dx) &&
 		(int)floor(mlx->ray.dx) < ft_strlen(game->config.map[(int)floor(mlx->ray.dy)]))
 	{
 		//dprintf(2, "Last_x = %d, d_x = %d\n", (int)last_x, (int)mlx->ray.dx);
-		last_x = mlx->ray.dx;
+		mlx->ray.last_x = mlx->ray.dx;
 		if (map[(int)floor(mlx->ray.dy)][(int)floor(mlx->ray.dx)] == '1')
 		{
 			//if (i % 25 == 0)
@@ -50,7 +43,7 @@ int	hit_wall(t_game *game, int i)
 
 void	init_ray(t_mlx *mlx)
 {
-	mlx->ray.angle = mlx->angle - 30; 
+	mlx->ray.angle = mlx->angle - 30;
 }
 
 int	raycasting(t_game *game)
@@ -67,6 +60,8 @@ int	raycasting(t_game *game)
 	dprintf(2, "p_y = %f\n", mlx->p_y);
 	while (i < WIDTH)
 	{
+		mlx->ray.last_x = mlx->p_x;
+		mlx->ray.last_y = mlx->p_y;
 		mlx->ray.dx = mlx->p_x;
 		mlx->ray.dy = mlx->p_y;
 		mlx->ray.rayCos = cos(deg2rad(mlx->ray.angle)) / 128;

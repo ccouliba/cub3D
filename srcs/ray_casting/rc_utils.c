@@ -9,6 +9,8 @@ double distx(t_mlx mlx)
 {
 	static int i = 0;
 
+	if (mlx.ray.rayCos < 0)
+		mlx.ray.dx++;
 	if (i % 10 == 0)
 	{
 		dprintf(2, "DISTtri x = %f, ", cos(deg2rad(mlx.ray.angle - mlx.angle)) * sqrt(pow(mlx.p_x - (int)mlx.ray.dx, 2) + pow(mlx.p_y - mlx.ray.dy, 2)));
@@ -24,6 +26,8 @@ double disty(t_mlx mlx)
 {
 	static int i = 0;
 
+	if (mlx.ray.raySin < 0)
+		mlx.ray.dy++;
 	if (i % 10 == 0)
 	{
 		dprintf(2, "DISTtri y = %f, ", cos(deg2rad(mlx.ray.angle - mlx.angle)) * sqrt(pow(mlx.p_x - mlx.ray.dx, 2) + pow(mlx.p_y - (int)mlx.ray.dy, 2)));
