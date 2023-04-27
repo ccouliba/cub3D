@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 02:17:11 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/02/28 15:51:24 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:05:27 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_char(char *line)
 {
 	while (*line)
 	{
-		if (!ft_strchr("01NSWE", *line))
+		if (!*(line + 1) && !ft_strchr("01NSWE", *line))
 			return (EXIT_FAILURE);
 		++line;
 	}

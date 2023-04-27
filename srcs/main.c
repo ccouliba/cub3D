@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/26 17:09:05 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:07:13 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	main(int ac, char **av)
 	raycasting(&game);
 	mlx_key_hook(img->win, get_key_code, &img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
-	// mlx_hook(img->win, 17, 0L, exit_mlx, &img);
+	mlx_hook(img->win, 17, 0L, exit_mlx, &img);
 	mlx_loop(img->mlx);
 	return (0);
 }
