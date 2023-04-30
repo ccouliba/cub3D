@@ -33,8 +33,16 @@ void	color_vline(t_mlx *mlx, int x, double distance)
 	int	wall_h;
 
 	//dprintf(2, "Distance = %f\n", distance);
-	wall_h = HEIGHT / 2 / distance;
-	j = HEIGHT / 2 - wall_h;
+	if (distance < 1)
+	{
+		wall_h = HEIGHT / 2;
+		j = 0;
+	}
+	else
+	{
+		wall_h = HEIGHT / 2 / distance;
+		j = HEIGHT / 2 - wall_h;
+	}
 	//printf("HEIGHT/2 = %d, distance = %f\n", HEIGHT / 2, distance);
 	//printf("wall_h = %d\nj = %d\n", wall_h, HEIGHT / 2 - wall_h);
 	//dprintf(2, "min = %p, max = %p\n", mlx->addr, mlx->addr + (WIDTH * mlx->size_line + HEIGHT * (mlx->bpp / 8)));

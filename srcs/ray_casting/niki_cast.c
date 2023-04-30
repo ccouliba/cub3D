@@ -55,17 +55,17 @@ int	raycasting(t_game *game)
 	mlx = &game->img;
 	mlx->p_x = game->config.pos[1] + 0.5;
 	mlx->p_y = game->config.pos[0] + 0.5;
+	dprintf(2, "map_size[0] = %d\n", game->config.map_size[0]);
+	dprintf(2, "map_size[1] = %d\n", game->config.map_size[1]);
 	init_ray(mlx);
-	dprintf(2, "pos[1] = %d\n", game->config.pos[1]);
-	dprintf(2, "p_y = %f\n", mlx->p_y);
 	while (i < WIDTH)
 	{
 		mlx->ray.last_x = mlx->p_x;
 		mlx->ray.last_y = mlx->p_y;
 		mlx->ray.dx = mlx->p_x;
 		mlx->ray.dy = mlx->p_y;
-		mlx->ray.rayCos = cos(deg2rad(mlx->ray.angle)) / 128;
-		mlx->ray.raySin = sin(deg2rad(mlx->ray.angle)) / 128;
+		mlx->ray.rayCos = cos(deg2rad(mlx->ray.angle)) / 256;
+		mlx->ray.raySin = sin(deg2rad(mlx->ray.angle)) / 256;
 		while (!hit_wall(game, i))
 			increment_ray(&mlx->ray);
 		//if (i % 100 == 0)
@@ -73,5 +73,6 @@ int	raycasting(t_game *game)
 		mlx->ray.angle += 60 / (double)WIDTH;
 		i++;
 	}
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 	return (0);
 }

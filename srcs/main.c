@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/27 19:07:13 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/04/30 21:11:36 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,40 @@ int	exit_mlx(t_mlx *mlx)
 	return (exit(1), EXIT_FAILURE);
 }
 
-static int	get_key_code(int key_code, t_mlx *mlx)
+static int	get_key_code(int key_code, t_game *game)
 {
-	if (key_code == ESC)
-		return (exit_mlx(mlx), EXIT_FAILURE);
+	t_mlx		*mlx;
+	double		new_x;
+	double		new_y;
+
+	mlx = &game->img;
+	new_x = mlx->p_x;
+	new_y = mlx->p_y;
+	dprintf(2, "p_x = %f, ", mlx->p_x);
+	dprintf(2, "p_y = %f\n", mlx->p_y);
+	if (key_code == ROTATE_LEFT)
+		mlx->angle -= 1 / 10;
+	else if (key_code == ROTATE_RIGHT)	
+		mlx->angle += 1 / 10;
+	else if (key_code == FORWARD)
+	{
+		new_x = mlx->p_y + sin(deg2rad(mlx->angle) / 10);
+		new_y = mlx->p_x + cos(deg2rad(mlx->angle) / 10);
+	}
+	else if (key_code == BACK)
+	{
+		new_x = mlx->p_y - sin(deg2rad(mlx->angle) / 10);
+		new_y = mlx->p_x - cos(deg2rad(mlx->angle) / 10);
+	}
+	else if (key_code == ESC)
+		return (exit_mlx(&game->img), EXIT_FAILURE);
+	dprintf(2, "new_x = %f, ", new_x);
+	dprintf(2, "new_y = %f\n", new_y);
+	if ((int)floor(new_y) < game->config.map_size[0] && (int)floor(new_x) < ft_strlen(game->config.map[(int)floor(new_y)]))
+	{
+		mlx->p_x = new_x;
+		mlx->p_y = new_y;
+	}
 	return (EXIT_SUCCESS);
 }
 
@@ -60,32 +90,12 @@ static int	get_key_code(int key_code, t_mlx *mlx)
 
 int	main(int ac, char **av)
 {
-	int		i;
-	int		j;
 	t_mlx	*img;
 	t_game	game;
 
 	img = &game.img;
 	ft_bzero(img, sizeof(t_mlx));
 	game.config = init_game(ac, av);
-	img->buf = (int **)malloc(sizeof(int *) * HEIGHT);
-	i = 0;
-	while (i < HEIGHT)
-	{
-		img->buf[i] = (int *)malloc(sizeof(int) * WIDTH);
-		++i;
-	}
-	i = 0;
-	while (i < HEIGHT)
-	{
-		j = 0;
-		while (j < WIDTH)
-		{
-			img->buf[i][j] = 0;
-			++j;
-		}
-		++i;
-	}
 	//if (game.config == NULL)
 	//	return (exit(1), 1);
 	img->mlx = mlx_init();
@@ -104,10 +114,10 @@ int	main(int ac, char **av)
 		return (printf("No Address\n"), 1);
 	color_line(img, 800, 100);
 	printf_map(game);
-	raycasting(&game);
+	//raycasting(&game);
 	mlx_key_hook(img->win, get_key_code, &img);
-	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
-	mlx_hook(img->win, 17, 0L, exit_mlx, &img);
+	//mlx_hook(img->win, 17, 0L, exit_mlx, &img);
 	mlx_loop(img->mlx);
+	mlx_loop_hook(img->mlx, &raycasting, &game);
 	return (0);
 }
