@@ -6,11 +6,20 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:48:14 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/20 22:01:39 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:05:54 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*a_s;
+
+	a_s = (unsigned char *)s;
+	while (n-- > 0)
+		*(a_s++) = 0;
+}
 
 int	ft_atoi(char *str)
 {
@@ -32,15 +41,6 @@ int	ft_atoi(char *str)
 	return (res);
 }
 
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*a_s;
-
-	a_s = (unsigned char *)s;
-	while (n-- > 0)
-		*(a_s++) = 0;
-}
-
 int	ft_isdigit(int c)
 {
 	return ((c >= '0' && c <= '9'));
@@ -59,13 +59,13 @@ int	check_number(char *s)
 	{
 		tmp1 = tmp[0];
 		if (tmp[1])
-			return (EXIT_FAILURE);
+			return (free_ret_1(tmp));
 	}
 	while (*tmp1)
 	{
 		if (!ft_isdigit(*tmp1))
-			return (EXIT_FAILURE);
+			return (free_ret_1(tmp));
 		++tmp1;
 	}
-	return (EXIT_SUCCESS);
+	return (free_ret_0(tmp));
 }

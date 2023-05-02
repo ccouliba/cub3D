@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:16:50 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/10 12:24:10 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 01:50:40 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,16 @@ static char	*relative_path(char *av)
 	split = ft_split(av, '/');
 	if (!split)
 		return (NULL);
+	tmp = NULL;
 	if (split[1])
 	{
 		tmp = ft_strdup(split[1]);
 		if (!tmp)
-			return (NULL);
+			return (free_double_p(split), NULL);
 		return (free_double_p(split), tmp);
 	}
+	if (tmp)
+		free(tmp);
 	return (free_double_p(split), av);
 }
 
@@ -70,7 +73,7 @@ static int	is_hidden_file(char *av)
 }
 
 /*
-** 0 if the extension is .ber
+** 0 if the extension is .cub
 ** 1 if it is a dir or hidden file
 */
 int	check_file(char *av, char *extension)

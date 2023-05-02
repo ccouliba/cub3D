@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:35:57 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/30 00:24:58 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 01:56:15 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ static int	check_surface_file(char *s)
 	if (!tmp)
 		return (EXIT_FAILURE);
 	if (!tmp[0] || !tmp[1] || !tmp[2] || tmp[3])
-		return (free_double_p(tmp), EXIT_FAILURE);
+		return (free_ret_1(tmp));
 	i = 0;
 	while (tmp[i])
 	{
 		if (check_number(tmp[i]))
-			return (free_double_p(tmp), EXIT_FAILURE);
+			return (free_ret_1(tmp));
 		res = ft_atoi(tmp[i]);
 		if (res < 0 || res > 255)
-			return (free_double_p(tmp), EXIT_FAILURE);
+			return (free_ret_1(tmp));
 		++i;
 	}
-	return (free_double_p(tmp), EXIT_SUCCESS);
+	return (free_ret_0(tmp));
 }
 
 static int	get_surface_config(t_config *config, char *line)
@@ -93,11 +93,11 @@ static int	check_config_line(t_config *config, char *line)
 	{
 		s = ft_split(line, ' ');
 		if (s[0] && ft_strlen(s[0]) != 2)
-			return (free_double_p(s), EXIT_FAILURE);
+			return (free_ret_1(s));
 		if (!s || !s[1] || s[2] || check_xpm_file(s[1]))
-			return (free_double_p(s), EXIT_FAILURE);
+			return (free_ret_1(s));
 		if (get_direction_config(config, line, s[1]))
-			return (free_double_p(s), EXIT_FAILURE);
+			return (free_ret_1(s));
 		free_double_p(s);
 	}
 	else if (*line == 'F' || *line == 'C')

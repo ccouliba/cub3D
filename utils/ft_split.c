@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 03:38:28 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/26 19:03:06 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:16:03 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	**free_double_p(char **s)
 	}
 	free(s);
 	s = NULL;
-	return (NULL);
+	return ((char **)NULL);
 }
 
 /*
@@ -78,8 +78,8 @@ static int	word_nb(char *s, char c)
 */
 static char	*get_mem(char *s, char c)
 {
-	char	*dup;
 	int		i;
+	char	*dup;
 
 	i = 0;
 	while (s[i] && s[i] != c)
@@ -98,18 +98,15 @@ static char	*get_mem(char *s, char c)
 */
 char	**ft_split(char *s, char c)
 {
-	char	**split;
 	int		i;
-	t_gc	*gc;
+	char	**split;
 
 	if (!s)
 		return (NULL);
-	gc = _garbage();
 	i = word_nb((char *)s, c);
-	// split = (char **)malloc(sizeof(char *) * (i + 1));
-	split = (char **)push_top(&gc, sizeof(char *) * (i + 1));
+	split = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!split)
-		return (gc_free(), NULL);
+		return (NULL);
 	i = 0;
 	while (*s)
 	{
@@ -118,12 +115,12 @@ char	**ft_split(char *s, char c)
 		if (*s && *s != c)
 		{
 			split[i] = get_mem(s, c);
-			if (!split[i++])
+			if (!split[i])
 				return (free_double_p(split));
+			++i;
 			while (*s && *s != c)
 				++s;
 		}
 	}
-	split[i] = 0;
-	return (split);
+	return (split[i] = 0, split);
 }

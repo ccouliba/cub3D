@@ -6,13 +6,13 @@
 #    By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/04/26 19:04:25 by ccouliba         ###   ########.fr        #
+#    Updated: 2023/05/02 02:04:22 by ccouliba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= cub3D
-
 include .color_code.txt
+
+NAME		= cub3D
 
 CC			= @clang
 
@@ -29,24 +29,23 @@ CFLAGS 		= -Wall -Wextra -Werror -g3 #-fsanitize=address
 LIBMLX	:=	$(addprefix $(PATH_MLX), $(LIBMLX))
 
 SRCS =	srcs/main.c \
-		srcs/parsing/parser.c \
+		srcs/reading/gnl.c \
+		srcs/reading/read_file.c \
+		srcs/reading/gnl_utils.c \
 		srcs/parsing/check_file.c \
 		srcs/parsing/check_flag.c \
 		srcs/parsing/check_config.c \
 		srcs/parsing/check_map.c \
+		srcs/parsing/parser.c \
 		srcs/parsing/parser_utils.c \
 		srcs/parsing/parser_utils_2.c \
-		srcs/reading/gnl.c \
-		srcs/reading/read_file.c \
-		srcs/reading/gnl_utils.c \
-		srcs/raycasting/raycasting.c \
+		srcs/raycasting/texture.c \
 		utils/lib_1.c \
 		utils/lib_2.c \
 		utils/list.c \
 		utils/ft_split.c \
 		utils/print_error.c \
-		utils/free_utils.c \
-		utils/singleton.c
+		utils/free_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -97,7 +96,7 @@ gitt: fclean
 	@echo "[$(_GREEN)!$(_END)] Adding files ... 	  [$(_GREEN)SUCCESS$(_END)]"
 	@echo "[$(_RED)!$(_END)] Committing ... 	  [$(_BK_RED)  FAIL $(_END)]"
 	@read -p "--> Need a name to commit (one word)&> " var
-	git commit -m var
+	git commit -m $var
 	@echo "[$(_GREEN)!$(_END)] Committing ... 	  [$(_GREEN)SUCCESS$(_END)]\n"
 	git push
 	@echo "[$(_GREEN)!$(_END)] Pushing :		    [$(_GREEN)SUCCESS$(_END)]\n"

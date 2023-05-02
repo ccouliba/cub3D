@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:18:43 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/22 22:31:32 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/01 23:47:35 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 ** Then split it at '\n' and return a *str for each line
 */
 
+/*
 void	*line_to_list(t_list *list, char *line)
 {
 	void	*tmp;
@@ -28,12 +29,12 @@ void	*line_to_list(t_list *list, char *line)
 	new = ft_lstnew((void *)tmp);
 	if (!new)
 		return (NULL);
-	free(tmp);
-	ft_lstadd_back(&list, ft_lstnew((void *) tmp));
-	return ((void *)list);
+	ft_lstadd_back(&list, new);
+	return (free(tmp), (void *)list);
 }
+*/
 
-static void	*get_line(int fd)
+static void	*line_to_list(int fd, int (*rd)())
 {
 	int		res;
 	char	*line;
@@ -45,7 +46,7 @@ static void	*get_line(int fd)
 	list = NULL;
 	while (res == 1)
 	{
-		res = get_next_line(fd, &line);
+		res = rd(fd, &line);
 		tmp = ft_lstnew((void *)line);
 		if (!tmp)
 			return (NULL);
@@ -54,24 +55,24 @@ static void	*get_line(int fd)
 	return ((void *)list);
 }
 
-char	**ft_malloc_double_p(t_list *token)
+char	**malloc_2_ptr(t_list *token, void *(*_mllc)())
 {
 	int		i;
+	int		size;
 	char	*tmp;
 	char	**param;
 
-	if (!token)
-		return ((char **) NULL);
-	param = (char **)malloc((sizeof(char *) * (ft_lstsize(token) + 1)));
+	size = ft_lstsize(token);
+	param = (char **)malloc((sizeof(char *) * (size + 1)));
 	if (!param)
 		return ((char **) NULL);
 	i = 0;
 	while (token)
 	{
 		tmp = token->val;
-		param[i] = ft_strdup(tmp);
+		param[i] = (char *)_mllc(tmp);
 		if (!param[i])
-			return (free_double_p(param), (char **) NULL);
+			return (free_double_p(param));
 		token = token->next;
 		++i;
 	}
@@ -90,13 +91,12 @@ char	**read_file(char *av)
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	tmp = get_line(fd);
+	tmp = line_to_list(fd, get_next_line);
 	if (!tmp)
 		return (NULL);
-	line = ft_malloc_double_p(tmp);
+	line = malloc_2_ptr(tmp, (void *)ft_strdup);
 	if (!line)
 		return (NULL);
-	free_stack(&tmp, free);
-	close(fd);
-	return (line);
+	free_list(&tmp, free);
+	return (close(fd), line);
 }

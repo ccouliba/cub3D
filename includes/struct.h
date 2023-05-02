@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/26 16:56:04 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:40:29 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ typedef struct s_mlx
 	int				img_height;
 
 }				t_mlx;
-
-typedef struct s_list
-{
-	void			*val;
-	struct s_list	*next;
-}				t_list;
 
 typedef struct s_flag
 {
@@ -59,45 +53,17 @@ typedef struct s_config
 	char			**map;
 }				t_config;
 
-typedef struct s_param
-{
-	// int		texture;
-	int				hit;
-	int				side;
-	int				text_num;
-	int				line_height;
-	int				map[2];
-	int				text[2];
-	int				step[2];
-	int				draw[2];
-	int				texture[4][TEXT_WIDTH * TEXT_HEIGHT];
-	double			pos[2];
-	double			dir_x;
-	double			dir_y;
-	double			plane_x;
-	double			plane_y;
-	double			move_speed;
-	double			rot_speed;
-	double			cam;
-	double			wall;
-	double			perp_wall_dist;
-	double			delta[2];
-	double			raydir[2];
-	double			side_dist[2];
-}				t_param;
-
-typedef struct s_gc
-{
-	void			*addr;
-	struct s_gc		*next;
-}				t_gc;
-
 typedef struct s_game
 {
 	t_mlx			img;
-	t_param			param;
 	t_config		config;
 }				t_game;
+
+typedef struct s_list
+{
+	void			*val;
+	struct s_list	*next;
+}				t_list;
 
 typedef int(*t_getter[5])(t_config *, char *);
 

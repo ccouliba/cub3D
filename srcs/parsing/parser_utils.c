@@ -52,37 +52,13 @@ int	around_zero(char **line, int i, int j)
 		return (EXIT_FAILURE);
 	if (!line[i - 1][j + 1] || !ft_strchr("01NSWE", line[i - 1][j + 1]))
 		return (EXIT_FAILURE);
-	if (!line[i + 1] || !line[i + 1][j - 1] || !ft_strchr("01NSWE", line[i + 1][j - 1]))
+	if (!line[i + 1] || !line[i + 1][j - 1]
+		|| !ft_strchr("01NSWE", line[i + 1][j - 1]))
 		return (EXIT_FAILURE);
 	if (!line[i + 1] || !line[i + 1][j] || !ft_strchr("01NSWE", line[i + 1][j]))
 		return (EXIT_FAILURE);
-	if (!line[i + 1] || !line[i + 1][j + 1] || !ft_strchr("01NSWE", line[i + 1][j + 1]))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
-int	around_char(char **line, int i, int j)
-{
-	char	*charset;
-
-	if (line[i][j] == ' ')
-		charset = "1 ";
-	else
-		charset = "01NSWE";
-
-	if (!line[i][j - 1] || !ft_strchr("01NSWE", line[i][j - 1]))
-		return (EXIT_FAILURE);
-	if (!line[i - 1][j - 1] || !ft_strchr("01NSWE", line[i - 1][j - 1]))
-		return (EXIT_FAILURE);
-	if (!line[i - 1][j] || !ft_strchr("01NSWE", line[i - 1][j]))
-		return (EXIT_FAILURE);
-	if (!line[i - 1][j + 1] || !ft_strchr("01NSWE", line[i - 1][j + 1]))
-		return (EXIT_FAILURE);
-	if (!line[i + 1] || !line[i + 1][j - 1] || !ft_strchr("01NSWE", line[i + 1][j - 1]))
-		return (EXIT_FAILURE);
-	if (!line[i + 1] || !line[i + 1][j] || !ft_strchr("01NSWE", line[i + 1][j]))
-		return (EXIT_FAILURE);
-	if (!line[i + 1] || !line[i + 1][j + 1] || !ft_strchr("01NSWE", line[i + 1][j + 1]))
+	if (!line[i + 1] || !line[i + 1][j + 1]
+		|| !ft_strchr("01NSWE", line[i + 1][j + 1]))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -104,16 +80,15 @@ int	occurences(char *s, int c)
 void	map_size(t_config *config)
 {
 	int		i;
-	int		len;
+	char	**map;
 
-	i = 0;
-	len = ft_strlen(config->map[i]);
-	++i;
-	while (config->map[i])
+	i = 1;
+	map = config->map;
+	while (map[i])
 	{
-		if (*config->map[i])
-			if (ft_strlen(config->map[i]) >= ft_strlen(config->map[i - 1]))
-				config->map_size[1] = ft_strlen(config->map[i]);
+		if (*map[i])
+			if (ft_strlen(map[i]) >= ft_strlen(map[i - 1]))
+				config->map_size[1] = ft_strlen(map[i]);
 		++i;
 	}
 	config->map_size[0] = i;

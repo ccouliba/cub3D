@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 05:37:28 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/26 17:42:20 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/01 23:55:47 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	**get_map(char **line)
 	int		first_line;
 	char	**map;
 
-	if (!line)// || !*line)
+	if (!line)
 		return (NULL);
 	i = get_map_beginning(line);
 	if (!line[i] || *line[i])

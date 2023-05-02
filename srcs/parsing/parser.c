@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:55:31 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/30 00:29:05 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 01:56:15 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void	get_map_position(t_config *config)
 	int		j;
 	char	**map;
 
-	map = config->map;
 	i = 0;
+	map = config->map;
 	while (map[i])
 	{
 		j = 0;
@@ -85,13 +85,13 @@ int	parser(int ac, char **av, t_config *config)
 		return (print_error(FILE_ERROR, 2), 1);
 	line = read_file(av[1]);
 	if (!line)
-		return (print_error(FILE_ERROR, 2), 1);
+		return (print_error(FILE_ERROR, 2), free_ret_1(line));
 	init_config(config);
 	if (check_all_config(config, line))
-		return (print_error(PARSING_ERROR, 2), 1);
+		return (print_error(PARSING_ERROR, 2), free_ret_1(line));
 	if (check_map(config, line))
-		return (print_error(MAP_ERROR, 2), 1);
+		return (print_error(MAP_ERROR, 2), free_ret_1(line));
 	get_map_position(config);
 	map_size(config);
-	return (/*free_double_p(line),*/ EXIT_SUCCESS);
+	return (free_ret_0(line));
 }
