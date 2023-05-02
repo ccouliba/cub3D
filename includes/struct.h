@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/02 02:40:29 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 04:14:04 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
-typedef int(*t_getter[5])(t_config *, char *);
+typedef struct s_cgf
+{
+	int				(*f)();
+	char			*msg;
+}				t_cfg;
+
+// typedef int(*t_cfg[3])(t_config *, char **);
 
 #endif

@@ -6,35 +6,13 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:18:43 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/01 23:47:35 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 05:00:42 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-/*
-** Read the file with GNL
-** Then split it at '\n' and return a *str for each line
-*/
-
-/*
-void	*line_to_list(t_list *list, char *line)
-{
-	void	*tmp;
-	t_list	*new;
-
-	tmp = (void *)ft_strdup(line);
-	if (!tmp)
-		return (NULL);
-	new = ft_lstnew((void *)tmp);
-	if (!new)
-		return (NULL);
-	ft_lstadd_back(&list, new);
-	return (free(tmp), (void *)list);
-}
-*/
-
-static void	*line_to_list(int fd, int (*rd)())
+static void	*line_to_list(int fd, int (*reader)())
 {
 	int		res;
 	char	*line;
@@ -46,7 +24,7 @@ static void	*line_to_list(int fd, int (*rd)())
 	list = NULL;
 	while (res == 1)
 	{
-		res = rd(fd, &line);
+		res = reader(fd, &line);
 		tmp = ft_lstnew((void *)line);
 		if (!tmp)
 			return (NULL);

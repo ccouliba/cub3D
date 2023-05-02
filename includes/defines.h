@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/11 16:19:13 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 05:26:51 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@
 /*
 ** Define error type
 */
+# define MISSING_ARG "Missing argument\n"
+# define TOO_MANY "Too many arguments\n"
+
 # define FILE_ERROR "File error\n"
 # define READING_ERROR "Reading error\n"
 # define PARSING_ERROR "Config error\n"
 # define MAP_ERROR "Map error\n"
 # define WRONG_SIZE "Cannot open window\n"
 # define ANY_MLX_ERROR "MinilibX error\n"
-
-# define MISSING_ARG "Missing argument\n"
-# define TOO_MANY "Too many arguments\n"
 
 /*
 ** Define sprites
@@ -60,7 +60,8 @@
 # define EAST "EA "
 
 /*
-** Define starting position
+** Define valid char in map
+** Define starting position letter
 */
 # define VALID_CHAR " 01NSWE"
 # define VALID_POS "NSWE"

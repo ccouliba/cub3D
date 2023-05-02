@@ -6,7 +6,7 @@
 #    By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/05/02 02:04:22 by ccouliba         ###   ########.fr        #
+#    Updated: 2023/05/02 03:06:08 by ccouliba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS =	srcs/main.c \
 		srcs/parsing/parser.c \
 		srcs/parsing/parser_utils.c \
 		srcs/parsing/parser_utils_2.c \
-		srcs/raycasting/texture.c \
+		srcs/parsing/parser_utils_3.c \
 		utils/lib_1.c \
 		utils/lib_2.c \
 		utils/list.c \

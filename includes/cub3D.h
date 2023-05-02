@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/02 02:43:21 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 05:07:24 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ int			is_directory(char *av);
 char		**read_file(char *file_name);
 
 int			check_file(char *av, char *extension);
-int			check_flag(char **file);
+int			check_flag(t_config *config, char **file);
 int			check_config(t_config *config, char **line);
 int			check_map(t_config *config, char **line);
+void		_cfg(t_cfg *cfg);
 
 int			parser(int ac, char **av, t_config *config);
 

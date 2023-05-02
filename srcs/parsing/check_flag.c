@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:00:17 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/01 23:55:32 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:55:46 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ static int	check_flag_value(t_flag *flag)
 	return (EXIT_SUCCESS);
 }
 
-int	check_flag(char **file)
+int	check_flag(t_config *config, char **file)
 {
 	t_flag	flag;
 
+	(void)config;
 	init_flag(&flag);
 	while (*file)
 	{

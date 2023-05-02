@@ -19,6 +19,20 @@ int	check_extension(char *s, char *extension)
 	return (EXIT_SUCCESS);
 }
 
+int	occurences(char *s, int c)
+{
+	int	flag;
+
+	flag = 0;
+	while (*s)
+	{
+		if (*s == c)
+			++flag;
+		++s;
+	}
+	return (flag);
+}
+
 int	check_xpm_file(char *s)
 {
 	int		fd;
@@ -42,54 +56,12 @@ int	check_xpm_file(char *s)
 	return (EXIT_SUCCESS);
 }
 
-int	around_zero(char **line, int i, int j)
+void	_cfg(t_cfg *cfg)
 {
-	if (!line[i][j - 1] || !ft_strchr("01NSWE", line[i][j - 1]))
-		return (EXIT_FAILURE);
-	if (!line[i - 1][j - 1] || !ft_strchr("01NSWE", line[i - 1][j - 1]))
-		return (EXIT_FAILURE);
-	if (!line[i - 1][j] || !ft_strchr("01NSWE", line[i - 1][j]))
-		return (EXIT_FAILURE);
-	if (!line[i - 1][j + 1] || !ft_strchr("01NSWE", line[i - 1][j + 1]))
-		return (EXIT_FAILURE);
-	if (!line[i + 1] || !line[i + 1][j - 1]
-		|| !ft_strchr("01NSWE", line[i + 1][j - 1]))
-		return (EXIT_FAILURE);
-	if (!line[i + 1] || !line[i + 1][j] || !ft_strchr("01NSWE", line[i + 1][j]))
-		return (EXIT_FAILURE);
-	if (!line[i + 1] || !line[i + 1][j + 1]
-		|| !ft_strchr("01NSWE", line[i + 1][j + 1]))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
-int	occurences(char *s, int c)
-{
-	int	flag;
-
-	flag = 0;
-	while (*s)
-	{
-		if (*s == c)
-			++flag;
-		++s;
-	}
-	return (flag);
-}
-
-void	map_size(t_config *config)
-{
-	int		i;
-	char	**map;
-
-	i = 1;
-	map = config->map;
-	while (map[i])
-	{
-		if (*map[i])
-			if (ft_strlen(map[i]) >= ft_strlen(map[i - 1]))
-				config->map_size[1] = ft_strlen(map[i]);
-		++i;
-	}
-	config->map_size[0] = i;
+	cfg[0].f = check_flag;
+	cfg[0].msg = PARSING_ERROR;
+	cfg[1].f = check_config;
+	cfg[1].msg = PARSING_ERROR;
+	cfg[2].f = check_map;
+	cfg[2].msg = MAP_ERROR;
 }

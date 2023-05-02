@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 02:17:11 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/26 17:43:57 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 05:09:29 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,21 +49,6 @@ int	check_spaces(char *line)
 	if (*line)
 		if (*line != '1')
 			return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
-
-int	after_zero(char *line)
-{
-	while (*line)
-	{
-		if (*line == '0')
-		{
-			++line;
-			if (*line && !ft_strchr("01NSEO", *line))
-				return (EXIT_FAILURE);
-		}
-		++line;
-	}
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 09:50:41 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/02 02:12:50 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 02:47:56 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2 && s2[++j] != '\0')
 		tab[i + j] = s2[j];
 	free(s1);
-	tab[i + j] = '\0';
-	return (tab);
+	return (tab[i + j] = '\0', tab);
 }
 
 char	*ft_substr(char *s, int start, int len)
