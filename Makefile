@@ -6,7 +6,7 @@
 #    By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/04/12 14:30:46 by ngenadie         ###   ########.fr        #
+#    Updated: 2023/05/03 18:05:55 by ngenadie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ SRCS =	srcs/main.c \
 		srcs/reading/gnl.c \
 		srcs/reading/read_file.c \
 		srcs/reading/gnl_utils.c \
-		srcs/ray_casting/raycasting.c \
 		utils/lib_1.c \
 		utils/lib_2.c \
 		utils/list.c \

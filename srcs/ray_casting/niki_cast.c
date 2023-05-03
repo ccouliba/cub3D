@@ -48,16 +48,20 @@ void	init_ray(t_mlx *mlx)
 
 int	raycasting(t_game *game)
 {
+	static int j = 0;
     int	i;
 	t_mlx	*mlx;
 	i = 0;
 
 	mlx = &game->img;
-	mlx->p_x = game->config.pos[1] + 0.5;
-	mlx->p_y = game->config.pos[0] + 0.5;
-	dprintf(2, "map_size[0] = %d\n", game->config.map_size[0]);
-	dprintf(2, "map_size[1] = %d\n", game->config.map_size[1]);
+	if (j % 200 == 0)
+	{
+		dprintf(2, "p_x = %f\n", (double)mlx->p_x);
+		dprintf(2, "p_y = %f\n", (double)mlx->p_y);
+	}
+	j++;
 	init_ray(mlx);
+	color_line(mlx, 800, 100);
 	while (i < WIDTH)
 	{
 		mlx->ray.last_x = mlx->p_x;
