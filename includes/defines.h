@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/03 19:09:54 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/05/03 23:08:50 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
 # define CUB_EXT ".cub"
 # define XPM_EXT ".xpm"
 # define BUFFER_SIZE 2048
-# define ROT_SP 1
+# define ROT_SP 0.2
 # define RUN_SP 10
+# define SIDE_SP 100
 
 /*
 ** Define keycode

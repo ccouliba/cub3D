@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:57:14 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/03 19:19:47 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:12:15 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_stack(t_list **stack, void (*clr)())
 		while (*stack)
 		{
 			elem = (*stack)->next;
-			clr((*stack)->content);
+			clr((*stack)->val);
 			clr(*stack);
 			*stack = elem;
 		}

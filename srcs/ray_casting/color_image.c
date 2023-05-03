@@ -15,6 +15,7 @@ void    color_line(t_mlx *mlx, int y, int distance)
 		while (i < WIDTH)
 		{
 			adr = (int *)(mlx->addr + (j * mlx->size_line + i * (mlx->bpp / 8)));
+			//dprintf(2, "addr = %p\n", adr);
 			if (j < HEIGHT / 2)
 				*adr = 1 << 7 | 1 << 14;
 			else

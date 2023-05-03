@@ -6,12 +6,14 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/30 20:32:34 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:50:21 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+# include <stdbool.h>
 
 typedef struct s_ray
 {
@@ -29,18 +31,21 @@ typedef struct s_ray
 typedef struct s_mlx
 {
 	t_ray			ray;
-	double			width;
-	double			lenght;
 	double			angle;
 	double			p_x;
 	double			p_y;
 	double			pos[2];
 	double			dir_x;
 	double			dir_y;
-	double			plane_x;
-	double			plane_y;
 	double			move_speed;
 	double			rot_speed;
+	bool			w;
+	bool			a;
+	bool			s;
+	bool			d;
+	bool			l;
+	bool			r;
+	bool			esc;
 	int				bpp;
 	int				size_line;
 	int				endian;
