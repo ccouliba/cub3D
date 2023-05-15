@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/03 22:50:21 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/05/11 02:00:26 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_ray
 
 typedef struct s_mlx
 {
+	long			i;
 	t_ray			ray;
 	double			angle;
 	double			p_x;
@@ -46,6 +47,10 @@ typedef struct s_mlx
 	bool			l;
 	bool			r;
 	bool			esc;
+	int				last_dist;
+	int				last_x;
+	int				last_y;
+	int				x_or_y;
 	int				bpp;
 	int				size_line;
 	int				endian;

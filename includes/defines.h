@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/03 23:08:50 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/05/11 01:11:19 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define CUB_EXT ".cub"
 # define XPM_EXT ".xpm"
 # define BUFFER_SIZE 2048
-# define ROT_SP 0.2
+# define ROT_SP 1
 # define RUN_SP 10
 # define SIDE_SP 100
 
@@ -75,7 +75,9 @@
 # define TEXT_WIDTH 32
 // # define MAP_WIDTH 32
 // # define MAP_HEIGHT 32
-# define WIDTH 2560
-# define HEIGHT 1440
-
+# define WIDTH 640
+# define HEIGHT 480
+# define FOV 100
+# define HALF_FOV FOV / 2
+# define PRECISION 512
 #endif

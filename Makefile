@@ -6,7 +6,7 @@
 #    By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/05/03 18:05:55 by ngenadie         ###   ########.fr        #
+#    Updated: 2023/05/05 03:20:36 by ngenadie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LINUX		= -I /usr/include -L /usr/lib/ -lmlx -L mlx -I mlx -lXext -l X11 -lm -lz
 
 LIBMLX		=	libmlx.a
 
-CFLAGS 		= -Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS 		= #-Wall -Wextra -Werror -g3 #-fsanitize=address
 
 LIBMLX	:=	$(addprefix $(PATH_MLX), $(LIBMLX))
 
