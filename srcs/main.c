@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/03 23:00:57 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/05/20 18:30:12 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int	main(int ac, char **av)
 	if (!img->addr)
 		return (printf("No Address\n"), 1);
 	printf_map(game);
+	dprintf(2, "screen width = %d, screen height = %d", )
 	img->p_x = game.config.pos[1] + 0.5;
 	img->p_y = game.config.pos[0] + 0.5;
 	//raycasting(&game);
