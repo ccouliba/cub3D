@@ -15,9 +15,9 @@
 		float fish = cos(deg2rad(fabs(mlx.ray.angle - mlx.angle)));
 		if (i % 25 == 0)
 		{
-			dprintf(2, "fish = %f, ", fish);
-			dprintf(2, "anlge_diff = %f, ", 90 - fabs(mlx.angle - mlx.ray.angle));
-			dprintf(2, "dist XX = %f, x = %f, p_x = %f, y = %f, py_= %f\n", dist * fish, mlx.p_x, floor(mlx.ray.dx), mlx.ray.dy, mlx.p_y);
+			//dprintf(2, "fish = %f, ", fish);
+			//dprintf(2, "anlge_diff = %f, ", 90 - fabs(mlx.angle - mlx.ray.angle));
+			//dprintf(2, "dist XX = %f, x = %f, p_x = %f, y = %f, py_= %f\n", dist * fish, mlx.p_x, floor(mlx.ray.dx), mlx.ray.dy, mlx.p_y);
 			//dprintf(2, "angle = %f\n", mlx.ray.angle);
 			//dprintf(2, "fish = %f\n", fish);
 		}
@@ -36,9 +36,9 @@
 		float fish = cos(deg2rad(fabs(mlx.ray.angle - mlx.angle)));
 		if (i % 25 == 0)
 		{
-			dprintf(2, "fish = %f, ", fish);
-			dprintf(2, "anlge_diff = %f, ", 90 - fabs(mlx.angle - mlx.ray.angle));
-			dprintf(2, "dist YY = %f, x = %f, p_x = %f, y = %f, py_= %f\n", dist * fish, mlx.p_x, (mlx.ray.dx), floor(mlx.ray.dy), mlx.p_y);
+			//dprintf(2, "fish = %f, ", fish);
+			//dprintf(2, "anlge_diff = %f, ", 90 - fabs(mlx.angle - mlx.ray.angle));
+			//dprintf(2, "dist YY = %f, x = %f, p_x = %f, y = %f, py_= %f\n", dist * fish, mlx.p_x, (mlx.ray.dx), floor(mlx.ray.dy), mlx.p_y);
 			//dprintf(2, "angle = %f\n", mlx.ray.angle);
 			//dprintf(2, "fish = %f\n", fish);
 		}

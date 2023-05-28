@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/20 18:30:12 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:46:11 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ static int	press_key(int key_code, void *ptr)
 int	main(int ac, char **av)
 {
 	t_mlx	*img;
-	t_game	game;
+	static t_game	game = {0};
 
 	img = &game.img;
-	ft_bzero(img, sizeof(t_mlx));
+	// ft_bzero(img, sizeof(t_mlx));
 	game.config = init_game(ac, av);
 	//if (game.config == NULL)
 	//	return (exit(1), 1);
@@ -116,7 +116,8 @@ int	main(int ac, char **av)
 	if (!img->addr)
 		return (printf("No Address\n"), 1);
 	printf_map(game);
-	dprintf(2, "screen width = %d, screen height = %d", )
+	mlx_get_screen_size(img->mlx, &game.param.screenx, &game.param.screeny);
+	dprintf(2, "SCREEN SIZE X = %d, SCREEN SIZE Y = %d\n", game.param.screenx, game.param.screeny);
 	img->p_x = game.config.pos[1] + 0.5;
 	img->p_y = game.config.pos[0] + 0.5;
 	//raycasting(&game);
