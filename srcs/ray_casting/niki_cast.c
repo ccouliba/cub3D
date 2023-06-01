@@ -95,7 +95,7 @@ int	raycasting(t_game *game)
 	move(game);
 	init_ray(mlx);
 	color_line(mlx, 800, 100);
-	dprintf(2, "==========================\n");
+		//dprintf(2, "==========================\n");
 	while (i < WIDTH)
 	{
 		mlx->ray.last_x = mlx->p_x;

@@ -6,7 +6,7 @@
 #    By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/05/05 03:20:36 by ngenadie         ###   ########.fr        #
+#    Updated: 2023/05/29 14:04:21 by ngenadie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= cub3D
 
 include .color_code.txt
 
-CC			= @clang
+CC			= @clang -g3
 
 RM 			= @rm -rf
 

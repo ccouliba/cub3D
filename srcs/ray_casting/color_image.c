@@ -45,7 +45,7 @@ void	color_vline(t_mlx *mlx, int x, double distance)
 	while (j < HEIGHT / 2 + wall_h)
 	{
 		adr = (int *)(mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
-		*adr = 1 << 23;
+		*adr = 1 << ((int *)mlx->tex_img)[]; //remplacer par la couleur de la texture au lieu du rouge
 		j++;
 	}
 }

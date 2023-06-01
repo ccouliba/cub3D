@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/28 23:46:11 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:22:37 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ static int	press_key(int key_code, void *ptr)
 	return (EXIT_SUCCESS);
 }
 
- static void	check_win_size(int width, int height)
- {
- 	if (!width || !height)
- 		print_error(WRONG_SIZE, 2);
- 	if (width < 1000 || width > INT_MAX || height < 480 || height > INT_MAX)
- 		print_error(WRONG_SIZE, 2);
- 	else
- 		return ;
- }
+static void	check_win_size(int width, int height)
+{
+	if (!width || !height)
+		print_error(WRONG_SIZE, 2);
+	if (width < 1000 || width > INT_MAX || height < 480 || height > INT_MAX)
+		print_error(WRONG_SIZE, 2);
+	else
+		return ;
+}
 
 int	main(int ac, char **av)
 {
@@ -118,6 +118,13 @@ int	main(int ac, char **av)
 	printf_map(game);
 	mlx_get_screen_size(img->mlx, &game.param.screenx, &game.param.screeny);
 	dprintf(2, "SCREEN SIZE X = %d, SCREEN SIZE Y = %d\n", game.param.screenx, game.param.screeny);
+	img->tex_img = mlx_xpm_file_to_image(img->mlx, "textures/bricksx64.xpm", &img->tex_width, &img->tex_height);
+	dprintf(2, "tex_width = %d, tex_height = %d\n", img->tex_width, img->tex_height);
+	for (int i = 0; i < img->tex_width * img->tex_height / 4; i++)
+	{
+		dprintf(2, "tex[%d] = %d\n", i, *(int *)img->tex_img);	
+		dprintf(2, "tex[%d] = %p\n", i, ((int *)img->tex_img) + i);	
+	}
 	img->p_x = game.config.pos[1] + 0.5;
 	img->p_y = game.config.pos[0] + 0.5;
 	//raycasting(&game);
