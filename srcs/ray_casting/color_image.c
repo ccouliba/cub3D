@@ -31,6 +31,8 @@ void	color_vline(t_mlx *mlx, int x, double distance)
 	int	*adr;
 	int	j;
 	int	wall_h;
+	int y;
+	int	yIncrement;
 
 	if (distance < 1)
 	{
@@ -42,10 +44,16 @@ void	color_vline(t_mlx *mlx, int x, double distance)
 		wall_h = HEIGHT / 2 / distance;
 		j = HEIGHT / 2 - wall_h;
 	}
+	y = yIncrement = wall_h / mlx->tex_height;
 	while (j < HEIGHT / 2 + wall_h)
 	{
 		adr = (int *)(mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
-		*adr = 1 << ((int *)mlx->tex_img)[]; //remplacer par la couleur de la texture au lieu du rouge
+		//dprintf(2, "y = %d, x = %d\n", (j % (mlx->tex_height / 4)), ((int)(mlx->ray.dx + mlx->ray.dy) % (mlx->tex_width / 4)));
+		*adr = ((int *)mlx->tex_img)[(y % (mlx->tex_height / 4)) * ((int)(mlx->ray.dx + mlx->ray.dy) % (mlx->tex_width / 4))];
+		dprintf(2, "y = %d, rayxyd = %d\n", (y % (mlx->tex_height / 4)), ((int)(mlx->ray.dx + mlx->ray.dy) % (mlx->tex_width / 4)));
+		//*adr = 1 << 23;
 		j++;
+		y += yIncrement;
+		//dprintf(2, "*adr = %d\n", *adr);
 	}
 }

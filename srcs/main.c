@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/06/01 17:22:37 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:47:34 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,16 +118,20 @@ int	main(int ac, char **av)
 	printf_map(game);
 	mlx_get_screen_size(img->mlx, &game.param.screenx, &game.param.screeny);
 	dprintf(2, "SCREEN SIZE X = %d, SCREEN SIZE Y = %d\n", game.param.screenx, game.param.screeny);
-	img->tex_img = mlx_xpm_file_to_image(img->mlx, "textures/bricksx64.xpm", &img->tex_width, &img->tex_height);
+	img->tex_img = mlx_xpm_file_to_image(img->mlx, "textures/red.xpm", &img->tex_width, &img->tex_height);
 	dprintf(2, "tex_width = %d, tex_height = %d\n", img->tex_width, img->tex_height);
-	for (int i = 0; i < img->tex_width * img->tex_height / 4; i++)
-	{
-		dprintf(2, "tex[%d] = %d\n", i, *(int *)img->tex_img);	
-		dprintf(2, "tex[%d] = %p\n", i, ((int *)img->tex_img) + i);	
-	}
+	dprintf(2, "tex_ptr = %p\n", img->tex_img);
+	//for (int i = 0; i < img->tex_width / 4; i++)
+	//{
+	//	for (int j = 0; j < img->tex_height / 4; j++)
+	//	{
+	//		printf("tex[%d][%d] = %d\n", i, j, ((int *)img->tex_img)[i * j]);	
+	//		printf("tex[%d][%d] = %p\n", i, j, ((int *)img->tex_img) + i * j);	
+	//	}
+	//}
+	dprintf("tex[127][127] = %d\n", ((int *)img->tex_img)[126 * 126 / 4]);
 	img->p_x = game.config.pos[1] + 0.5;
 	img->p_y = game.config.pos[0] + 0.5;
-	//raycasting(&game);
 	//mlx_hook(img->win, 17, 0L, exit_mlx, &img);
 	mlx_loop_hook(img->mlx, &raycasting, &game);
 	mlx_hook(img->win, 2, 1L << 0, &press_key, img);
