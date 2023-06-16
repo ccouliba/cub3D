@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/06/15 14:47:34 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:09:43 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ int	main(int ac, char **av)
 	//		printf("tex[%d][%d] = %p\n", i, j, ((int *)img->tex_img) + i * j);	
 	//	}
 	//}
-	dprintf("tex[127][127] = %d\n", ((int *)img->tex_img)[126 * 126 / 4]);
 	img->p_x = game.config.pos[1] + 0.5;
 	img->p_y = game.config.pos[0] + 0.5;
 	//mlx_hook(img->win, 17, 0L, exit_mlx, &img);
