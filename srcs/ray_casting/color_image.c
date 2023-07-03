@@ -33,7 +33,9 @@ void	color_vline(t_mlx *mlx, int x, double distance)
 	int	wall_h;
 	float y;
 	float yIncrement;
+	float texPosX;
 
+	texPosX = (int)(mlx->tex_width * (mlx->ray.dx + mlx->ray.dy)) % mlx->tex_width;
 	if (distance < 1)
 	{
 		wall_h = HEIGHT / 2;
@@ -44,20 +46,19 @@ void	color_vline(t_mlx *mlx, int x, double distance)
 		wall_h = HEIGHT / 2 / distance;
 		j = HEIGHT / 2 - wall_h;
 	}
-	y = yIncrement = wall_h / mlx->tex_height;
-	//dprintf(2, "y = %f, y mod = %d\n", y ,((int)y % (mlx->tex_height / 4)));
+	y = yIncrement = (float)wall_h * 2 / (float)mlx->tex_height;
 	while (j < HEIGHT / 2 + wall_h)
 	{
 		adr = (int *)(mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
-		*adr = ((int *)mlx->tex_img)[((int)y % (mlx->tex_height / 4)) * ((int)(mlx->ray.dx + mlx->ray.dy) % (mlx->tex_width / 4))];
-		//dprintf(2, "y = %d, x = %d\n", (j % (mlx->tex_height / 4)), ((int)(mlx->ray.dx + mlx->ray.dy) % (mlx->tex_width / 4)));
-
-
-
-		//printf(2, "y = %f, y mod = %d\n", y, ((int)y % (mlx->tex_height / 4)));
-		//*adr = 1 << 23;
+		//dprintf(2, "y = %f\n", y);
+		dprintf(2, "y = %f\n", y);
+		dprintf(2, "texPosX = %d, size_line = %d\n", (int)texPosX, mlx->tex_size_line);
+		dprintf(2, "bpp = %d\n", mlx->tex_bpp);
+		*adr = (int *)(mlx->tex_data) + (int)(y * mlx->tex_size_line) + (int)texPosX;
 		j++;
 		y += yIncrement;
-		//dprintf(2, "*adr = %d\n", *adr);
 	}
 }
+		//*adr = mlx_get_color_value(mlx->mlx, ((int *)mlx->tex_data)[((int)y % (mlx->tex_height / 4)) * ((int)(mlx->ray.dx * mlx->ray.dy) % (mlx->tex_width / 4))]);
+		//*adr = 1 << 23;
+		//*adr = mlx_get_color_value(mlx->mlx, ((int *)mlx->tex_data)[((int)y % mlx->tex_height) * mlx->tex_width + ((int)(mlx->ray.dx + mlx->ray.dy) % mlx->tex_width)]);

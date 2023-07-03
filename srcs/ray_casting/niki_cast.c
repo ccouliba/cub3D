@@ -17,7 +17,7 @@ int	hit_wall(t_game *game, int i)
 		if (map[(int)mlx->ray.dy][(int)mlx->ray.dx] == '1')
 		{
 
-			return (color_vline(mlx, i, disty(*mlx)), 1);
+			return (color_vline(mlx, i, disty(mlx)), 1);
 		}
 	}
 	if ((int)mlx->ray.dy < game->config.map_size[0] && (int)mlx->ray.last_x - (int)mlx->ray.dx &&
@@ -26,7 +26,7 @@ int	hit_wall(t_game *game, int i)
 		mlx->ray.last_x = mlx->ray.dx;
 		if (map[(int)mlx->ray.dy][(int)mlx->ray.dx] == '1')
 		{
-			return (color_vline(mlx, i, distx(*mlx)), 1);
+			return (color_vline(mlx, i, distx(mlx)), 1);
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/05 03:46:18 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:27:44 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ double		deg2rad(double deg);
 void		color_line(t_mlx *mlx, int y, int distance);
 void		color_vline(t_mlx *mlx, int x, double distance);
 void		init_mlx(t_mlx *img);
-double		disty(t_mlx mlx);
-double		distx(t_mlx mlx);
+double		disty(t_mlx *mlx);
+double		distx(t_mlx *mlx);
 
 /******************************************************************************/
 /*********************************** UTILS ************************************/

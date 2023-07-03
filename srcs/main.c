@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/06/16 11:09:43 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/07/02 19:10:21 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ static void	check_win_size(int width, int height)
 int	main(int ac, char **av)
 {
 	t_mlx	*img;
-	static t_game	game = {0};
+	t_game	game;
 
 	img = &game.img;
-	// ft_bzero(img, sizeof(t_mlx));
+	ft_bzero(&game, sizeof(t_game));
 	game.config = init_game(ac, av);
 	//if (game.config == NULL)
 	//	return (exit(1), 1);
@@ -117,18 +117,9 @@ int	main(int ac, char **av)
 		return (printf("No Address\n"), 1);
 	printf_map(game);
 	mlx_get_screen_size(img->mlx, &game.param.screenx, &game.param.screeny);
-	dprintf(2, "SCREEN SIZE X = %d, SCREEN SIZE Y = %d\n", game.param.screenx, game.param.screeny);
-	img->tex_img = mlx_xpm_file_to_image(img->mlx, "textures/red.xpm", &img->tex_width, &img->tex_height);
+	img->tex_img = mlx_xpm_file_to_image(img->mlx, "textures/greystone.xpm", &img->tex_width, &img->tex_height);
+	img->tex_data = mlx_get_data_addr(img->tex_img, &img->tex_bpp, &img->tex_size_line, &img->tex_endian);
 	dprintf(2, "tex_width = %d, tex_height = %d\n", img->tex_width, img->tex_height);
-	dprintf(2, "tex_ptr = %p\n", img->tex_img);
-	//for (int i = 0; i < img->tex_width / 4; i++)
-	//{
-	//	for (int j = 0; j < img->tex_height / 4; j++)
-	//	{
-	//		printf("tex[%d][%d] = %d\n", i, j, ((int *)img->tex_img)[i * j]);	
-	//		printf("tex[%d][%d] = %p\n", i, j, ((int *)img->tex_img) + i * j);	
-	//	}
-	//}
 	img->p_x = game.config.pos[1] + 0.5;
 	img->p_y = game.config.pos[0] + 0.5;
 	//mlx_hook(img->win, 17, 0L, exit_mlx, &img);
@@ -138,3 +129,14 @@ int	main(int ac, char **av)
 	mlx_loop(img->mlx);
 	return (0);
 }
+
+//	dprintf(2, "SCREEN SIZE X = %d, SCREEN SIZE Y = %d\n", game.param.screenx, game.param.screeny);
+	//dprintf(2, "bpp = %d, size_line = %d\n", img->bpp, img->size_line);
+	//for (int i = 0; i < img->tex_width / 4; i++)
+	//{
+	//	for (int j = 0; j < img->tex_height / 4; j++)
+	//	{
+	//		printf("tex[%d][%d] = %d\n", i, j, ((int *)img->tex_img)[i * j]);	
+	//		printf("tex[%d][%d] = %p\n", i, j, ((int *)img->tex_img) + i * j);	
+	//	}
+	//}

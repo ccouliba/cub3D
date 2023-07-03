@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/29 14:00:11 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/07/02 16:30:18 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ typedef struct s_mlx
 	void			*win;
 	void			*img;
 	void			*tex_img;
+	void			*tex_data;
+	int				tex_bpp;
+	int				tex_size_line;
+	int				tex_endian;
 	int				tex_height;
 	int				tex_width;
 
@@ -126,6 +130,6 @@ typedef struct s_game
 	t_config		config;
 }				t_game;
 
-typedef int(*t_getter[5])(t_config *, char *);
+//typedef int(*t_getter[5])(t_config *, char *);
 
 #endif
