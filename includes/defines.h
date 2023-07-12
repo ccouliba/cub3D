@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/27 19:36:16 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:53:13 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@
 // # define MAP_HEIGHT 32
 # define WIDTH 640
 # define HEIGHT 480
+# define HALF_WIDTH WIDTH / 2
+# define HALF_HEIGHT HEIGHT / 2
 # define FOV 40
 # define HALF_FOV FOV / 2
 # define PRECISION 64
+# define WALL_GAP 1
 #endif

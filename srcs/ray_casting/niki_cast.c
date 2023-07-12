@@ -76,13 +76,25 @@ void	move(t_game *game)
 		new_x = mlx->p_x + cos(deg2rad(mlx->angle + 90)) / SIDE_SP;
 		new_y = mlx->p_y + sin(deg2rad(mlx->angle + 90)) / SIDE_SP;
 	}
-	if ((int)floor(new_y) < game->config.map_size[0]
-		&& (int)floor(new_x) < ft_strlen(game->config.map[(int)floor(new_y)])
-		&& game->config.map[(int)floor(new_y)][(int)floor(new_x)] != '1')
+//	dprintf(2, "new_y = %f\n", new_y - WALL_GAP);
+//	dprintf(2, "new_x = %f\n", new_x - WALL_GAP);
+//	dprintf(2, "1 = %d, 2 = %d, 3 = %d, 4 = %d, 5 = %d\n", new_y + WALL_GAP < game->config.map_size[0],
+		new_y - WALL_GAP > 1, new_x + WALL_GAP < ft_strlen(game->config.map[(int)new_y]),
+		new_x - WALL_GAP > 1, game->config.map[(int)new_y][(int)new_x] != '1');
+	if (new_y + WALL_GAP < game->config.map_size[0]
+		&& new_y - WALL_GAP > 1
+		&& new_x + WALL_GAP < ft_strlen(game->config.map[(int)new_y])
+		&& new_x - WALL_GAP > 1
+		&& game->config.map[(int)new_y][(int)new_x] != '1')
 	{
 		mlx->p_x = new_x;
 		mlx->p_y = new_y;
 	}
+}
+
+bool can_move(float x, float y)
+{
+
 }
 
 int	raycasting(t_game *game)
@@ -95,7 +107,7 @@ int	raycasting(t_game *game)
 	move(game);
 	init_ray(mlx);
 	color_line(mlx, 800, 100);
-		//dprintf(2, "==========================\n");
+	dprintf(2, "==========================\n");
 	while (i < WIDTH)
 	{
 		mlx->ray.last_x = mlx->p_x;

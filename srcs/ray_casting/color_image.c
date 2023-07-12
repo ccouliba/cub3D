@@ -34,31 +34,32 @@ void	color_vline(t_mlx *mlx, int x, double distance)
 	float y;
 	float yIncrement;
 	float texPosX;
-
-	texPosX = (int)(mlx->tex_width * (mlx->ray.dx + mlx->ray.dy)) % mlx->tex_width;
-	if (distance < 1)
-	{
-		wall_h = HEIGHT / 2;
+ 
+	texPosX = (int)((mlx->tex_width * (mlx->ray.dx + mlx->ray.dy))) % mlx->tex_width;
+	wall_h = HALF_HEIGHT / distance;
+	j = HALF_HEIGHT - wall_h;
+	// yIncrement = (float)(wall_h * 2) / mlx->tex_height;
+	yIncrement = mlx->tex_height / (float)(wall_h * 2);
+	y = 0;
+//	dprintf(2, "wall_h = %d\n", wall_h);
+//	dprintf(2, "yIncrement = %f\n", yIncrement);
+	//dprintf(2, "\n-------------------------------------------------------\n");
+	//dprintf(2, "size_line / bpp = %d\n", mlx->tex_size_line / mlx->tex_bpp);
+	//dprintf(2, "wall_h * 2 = %d, yIncrement = %f\n", wall_h * 2, yIncrement);
+	if (j < 0)
 		j = 0;
-	}
-	else
+	while (j < HEIGHT && j < HEIGHT / 2 + wall_h)
 	{
-		wall_h = HEIGHT / 2 / distance;
-		j = HEIGHT / 2 - wall_h;
-	}
-	y = yIncrement = (float)wall_h * 2 / (float)mlx->tex_height;
-	while (j < HEIGHT / 2 + wall_h)
-	{
+		// dprintf(2, "y = %f\n", y);
+		// y = (int)y % mlx->tex_height;
 		adr = (int *)(mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
-		//dprintf(2, "y = %f\n", y);
-		dprintf(2, "y = %f\n", y);
-		dprintf(2, "texPosX = %d, size_line = %d\n", (int)texPosX, mlx->tex_size_line);
-		dprintf(2, "bpp = %d\n", mlx->tex_bpp);
-		*adr = (int *)(mlx->tex_data) + (int)(y * mlx->tex_size_line) + (int)texPosX;
+		*adr = *((int *)mlx->tex_data + (int)(((int)y * (mlx->tex_size_line / (mlx->tex_bpp / 8)) + (int)texPosX)));
 		j++;
 		y += yIncrement;
 	}
 }
-		//*adr = mlx_get_color_value(mlx->mlx, ((int *)mlx->tex_data)[((int)y % (mlx->tex_height / 4)) * ((int)(mlx->ray.dx * mlx->ray.dy) % (mlx->tex_width / 4))]);
 		//*adr = 1 << 23;
-		//*adr = mlx_get_color_value(mlx->mlx, ((int *)mlx->tex_data)[((int)y % mlx->tex_height) * mlx->tex_width + ((int)(mlx->ray.dx + mlx->ray.dy) % mlx->tex_width)]);
+		//dprintf(2, "y = %d, x = %d|", (int)y, (int)texPosX);
+		//dprintf(2, "y = %d, x = %d\n", y, texPosX);
+		//*adr = (int *)(mlx->tex_data) + ((int)(y * mlx->tex_size_line) + (int)texPosX / mlx->tex_bpp);
+		//*adr = 1 << 23;

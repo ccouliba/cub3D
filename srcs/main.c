@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/07/02 19:10:21 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/07/11 16:49:34 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	main(int ac, char **av)
 		return (printf("No Address\n"), 1);
 	printf_map(game);
 	mlx_get_screen_size(img->mlx, &game.param.screenx, &game.param.screeny);
-	img->tex_img = mlx_xpm_file_to_image(img->mlx, "textures/greystone.xpm", &img->tex_width, &img->tex_height);
+	img->tex_img = mlx_xpm_file_to_image(img->mlx, "textures/bricksx64.xpm", &img->tex_width, &img->tex_height);
 	img->tex_data = mlx_get_data_addr(img->tex_img, &img->tex_bpp, &img->tex_size_line, &img->tex_endian);
 	dprintf(2, "tex_width = %d, tex_height = %d\n", img->tex_width, img->tex_height);
 	img->p_x = game.config.pos[1] + 0.5;
