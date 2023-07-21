@@ -79,8 +79,8 @@ void	move(t_game *game)
 //	dprintf(2, "new_y = %f\n", new_y - WALL_GAP);
 //	dprintf(2, "new_x = %f\n", new_x - WALL_GAP);
 //	dprintf(2, "1 = %d, 2 = %d, 3 = %d, 4 = %d, 5 = %d\n", new_y + WALL_GAP < game->config.map_size[0],
-		new_y - WALL_GAP > 1, new_x + WALL_GAP < ft_strlen(game->config.map[(int)new_y]),
-		new_x - WALL_GAP > 1, game->config.map[(int)new_y][(int)new_x] != '1');
+//		new_y - WALL_GAP > 1, new_x + WALL_GAP < ft_strlen(game->config.map[(int)new_y]),
+//		new_x - WALL_GAP > 1, game->config.map[(int)new_y][(int)new_x] != '1');
 	if (new_y + WALL_GAP < game->config.map_size[0]
 		&& new_y - WALL_GAP > 1
 		&& new_x + WALL_GAP < ft_strlen(game->config.map[(int)new_y])
