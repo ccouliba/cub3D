@@ -28,35 +28,27 @@ void    color_line(t_mlx *mlx, int y, int distance)
 
 void	color_vline(t_mlx *mlx, int x, double distance)
 {
-	int	*adr;
-	int	j;
-	int	wall_h;
-	float diff;
-	float y;
-	float yIncrement;
-	float texPosX;
+	int		*adr;
+	int		j;
+	float	wall_h;
+	float	y;
+	float	yIncrement;
+	float	texPosX;
  
 	texPosX = (int)((mlx->tex_width * (mlx->ray.dx + mlx->ray.dy))) % mlx->tex_width;
 	wall_h = HALF_HEIGHT / distance;
 	j = HALF_HEIGHT - wall_h;
-	yIncrement = (wall_h);
+	yIncrement = mlx->tex_height / (wall_h * 2);
 	y = 0;
+	//dprintf(2, "wall_h = %f, distance = %f, yInc = %f\n", wall_h * 2, distance, yIncrement);
 	if (j < 0)
 	{
 		j = 0;
-		if (wall_h > HEIGHT)
-		{
-			dprintf(2, "HEIGHT = %d, wall_h = %d\n", HEIGHT, wall_h);
-			diff = HEIGHT / (float)wall_h;
-			dprintf(2, "diff = HEIGHT / wall_h = %f\n", diff);
-			y = mlx->tex_height * (diff / 2);
-			dprintf(2, "y = %d\n", y);
-		}
-		//y = diff * mlx->tex_height;
-		//yIncrement = z
-		//y = 
+		y = mlx->tex_height * (mlx->tex_height / wall_h);
 	}
-	while (j < HEIGHT && j < HEIGHT / 2 + wall_h)
+	dprintf(2, "tex_h = %d, wall_h = %f\n", mlx->tex_height, wall_h);
+	dprintf(2, "yInc = %f, y = %f\n", yIncrement, y);
+	while (j < HEIGHT && j < HALF_HEIGHT + wall_h)
 	{
 		adr = (int *)(mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
 		*adr = *((int *)mlx->tex_data + (int)(((int)y * (mlx->tex_size_line / (mlx->tex_bpp / 8)) + (int)texPosX)));
