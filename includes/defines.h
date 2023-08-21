@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/07/21 16:32:24 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:00:45 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@
 # define FOV 40
 # define HALF_FOV FOV / 2
 # define PRECISION 64
-# define WALL_GAP 0.3
+# define WALL_GAP 0.2
 #endif
