@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/07/21 17:01:32 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:51:28 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,16 @@ static void	check_win_size(int width, int height)
 		return ;
 }
 
+int	ft_load_tex(t_game game)
+{
+	t_mlx	*mlx;
+	t_config *config;
+
+	config = &game.config;
+	mlx = &game.img;
+	mlx->n_img = mlx_xpm_file_to_image(game->img->mlx, config.north, &img->tex_width, &img->tex_height);
+}
+
 int	main(int ac, char **av)
 {
 	t_mlx	*img;
@@ -99,8 +109,6 @@ int	main(int ac, char **av)
 	img = &game.img;
 	ft_bzero(&game, sizeof(t_game));
 	game.config = init_game(ac, av);
-	//if (game.config == NULL)
-	//	return (exit(1), 1);
 	img->mlx = mlx_init();
 	if (!img->mlx)
 		return (1);

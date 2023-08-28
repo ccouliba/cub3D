@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/07/02 16:30:18 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/08/28 13:51:24 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_mlx
 	int				last_dist;
 	int				last_x;
 	int				last_y;
-	int				x_or_y;
+	char			xy;
 	int				bpp;
 	int				size_line;
 	int				endian;
@@ -61,14 +61,16 @@ typedef struct s_mlx
 	void			*mlx;
 	void			*win;
 	void			*img;
-	void			*tex_img;
+	void			*n_img;
+	void			*s_img;
+	void			*e_img;
+	void			*w_img;
 	void			*tex_data;
 	int				tex_bpp;
 	int				tex_size_line;
 	int				tex_endian;
 	int				tex_height;
 	int				tex_width;
-
 }				t_mlx;
 
 typedef struct s_list

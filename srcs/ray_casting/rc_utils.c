@@ -7,6 +7,7 @@ double deg2rad(double deg)
 
 double distx(t_mlx *mlx)
 {
+	mlx->xy = 'x';
 	if (mlx->ray.rayCos < 0)
 		mlx->ray.dx++;
 	mlx->ray.dx = floor(mlx->ray.dx);
@@ -17,6 +18,7 @@ double distx(t_mlx *mlx)
 
 double disty(t_mlx *mlx)
 {
+	mlx->xy = 'y';
 	if (mlx->ray.raySin < 0)
 		mlx->ray.dy++;
 	mlx->ray.dy = floor(mlx->ray.dy);

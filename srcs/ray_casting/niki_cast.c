@@ -39,7 +39,7 @@ void	init_ray(t_mlx *mlx)
 
 void	move(t_game *game)
 {
-	t_mlx *mlx;
+	t_mlx	*mlx;
 	double	new_x;
 	double	new_y;
 
@@ -76,11 +76,6 @@ void	move(t_game *game)
 		new_x = mlx->p_x + cos(deg2rad(mlx->angle + 90)) / SIDE_SP;
 		new_y = mlx->p_y + sin(deg2rad(mlx->angle + 90)) / SIDE_SP;
 	}
-//	dprintf(2, "new_y = %f\n", new_y - WALL_GAP);
-//	dprintf(2, "new_x = %f\n", new_x - WALL_GAP);
-//	dprintf(2, "1 = %d, 2 = %d, 3 = %d, 4 = %d, 5 = %d\n", new_y + WALL_GAP < game->config.map_size[0],
-//		new_y - WALL_GAP > 1, new_x + WALL_GAP < ft_strlen(game->config.map[(int)new_y]),
-//		new_x - WALL_GAP > 1, game->config.map[(int)new_y][(int)new_x] != '1');
 	if (game->config.map[(int)(new_y - WALL_GAP)][(int)new_x] != '1'
 		&& game->config.map[(int)(new_y + WALL_GAP)][(int)new_x] != '1'
 		&& game->config.map[(int)new_y][(int)(new_x - WALL_GAP)] != '1'
@@ -118,8 +113,6 @@ int	raycasting(t_game *game)
 		mlx->ray.raySin = sin(deg2rad(mlx->ray.angle)) / PRECISION;
 		while (!hit_wall(game, i))
 			increment_ray(&mlx->ray);
-		//if (i % 100 == 0)
-		//	dprintf(2, "dx = %f\ndy = %f\n", mlx->ray.dx, mlx->ray.dy);
 		mlx->ray.angle += FOV / (double)WIDTH;
 		i++;
 	}
