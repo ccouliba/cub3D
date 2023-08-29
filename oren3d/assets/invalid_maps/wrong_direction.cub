@@ -1,0 +1,12 @@
+NO ./textures/non_existant.jpg
+SO ./textures/lava.jpg
+WE ./textures/mud.jpg
+EA ./textures/water.jpg
+F 220,100,0
+C 225,30,0
+
+
+11111
+10S11
+10001
+11111
