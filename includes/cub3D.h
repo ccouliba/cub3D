@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/02 05:07:24 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 06:07:20 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,17 @@ int			after_start_pos(char *line);
 /******************************************************************************/
 /************************************ MLX *************************************/
 /******************************************************************************/
-
+void		my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
+int			raycasting(t_game *game);
+void		draw(t_mlx *img);
+void		looping(t_game *game);
+void		increment_ray(t_ray *ray);
+double		deg2rad(double deg);
+void		color_line(t_mlx *mlx, int y, int distance);
+void		color_vline(t_mlx *mlx, int x, double distance);
+void		init_mlx(t_mlx *img);
+double		disty(t_mlx mlx);
+double		distx(t_mlx mlx);
 
 /******************************************************************************/
 /*********************************** UTILS ************************************/

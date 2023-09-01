@@ -6,7 +6,7 @@
 #    By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/05/02 03:06:08 by ccouliba         ###   ########.fr        #
+#    Updated: 2023/09/01 19:21:20 by ccouliba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ include .color_code.txt
 
 NAME		= cub3D
 
-CC			= @clang
+CC			= clang
 
-RM 			= @rm -rf
+RM 			= rm -rf
 
 PATH_MLX	= ./mlx/
 
@@ -40,6 +40,9 @@ SRCS =	srcs/main.c \
 		srcs/parsing/parser_utils.c \
 		srcs/parsing/parser_utils_2.c \
 		srcs/parsing/parser_utils_3.c \
+		srcs/raycasting/color_image.c \
+		srcs/raycasting/niki_cast.c \
+		srcs/raycasting/rc_utils.c \
 		utils/lib_1.c \
 		utils/lib_2.c \
 		utils/list.c \
@@ -49,6 +52,15 @@ SRCS =	srcs/main.c \
 
 OBJS = $(SRCS:.c=.o)
 
+DEP = $(SRCS:.c=.d)
+ 
+DIR_OBJ = .objects
+
+BUG_REPORT = .bug.txt
+# a = $(shell echo abc)
+
+# CHECK_INPUT = echo "make: [$(_RED)!$(_END)] Do you want to continue [Y/n]?" && read input && sleep 1.5 ; if [ $$input = "n" ]; then echo "make: aborting ..." && exit 1 ; fi
+
 all: $(NAME)
 
 mlx/libmlx.a:
@@ -56,51 +68,81 @@ mlx/libmlx.a:
 
 $(NAME): ${OBJS} ${LIBMLX}
 		make -C $(PATH_MLX) all
-		@echo "[$(_BLUE)!$(_END)] Rules :\t[$(_BLUE)all$(_END)] [$(_BLUE)clean$(_END)] [$(_BLUE)fclean$(_END)] [$(_BLUE)re$(_END)] [$(_BLUE)leak$(_END)] [$(_BLUE)debug$(_END)]"
-		@echo -n "\n"
+		if [ ! -d "$(DIR_OBJ)" ]; then mkdir "$(DIR_OBJ)"; fi
+		echo "\t\t[$(_BLUE)all$(_END)] [$(_BLUE)clean$(_END)] [$(_BLUE)fclean$(_END)] [$(_BLUE)re$(_END)] [$(_BLUE)leak$(_END)] [$(_BLUE)gitp$(_END)]"
+		for i in $(SRCS); do printf "make: $(_BLUE)all$(_END):processing sources... :" ; printf "\\t$$i\\r" ; sleep 0.3 ; printf "\033[0K\r" ; done
 		$(CC) $(CFLAGS) $(OBJS) ${LINUX} -o $(NAME)
-		@echo "[$(_GREEN)!$(_END)] Compilation ... 	  [$(_GREEN)SUCCESS$(_END)]"
-		@echo "[$(_GREEN)!$(_END)] Creating .out ... 	  [$(_GREEN)SUCCESS$(_END)]"
-		@bash .script_bar.sh
-		@echo "[$(_YELLOW)!$(_END)] Exec name :\t\t  [$(_YELLOW)$(NAME)$(_END)]"
+		echo "make: $(_BLUE)all$(_END): Compilation ...\t\t\t\t[ $(_GREEN)DONE$(_END) ]"
+		mv *.o ./$(DIR_OBJ)/
+# 		@bash .script_bar.sh
+		echo "make: $(_BLUE)all$(_END): Exec creation ...\t\t\t\t[ $(_GREEN)DONE$(_END) ]"
+		echo "make: $(_BLUE)all$(_END): Exec name :\t\t\t\t\t[$(_YELLOW)$(NAME)$(_END)]"
 
 %o: %.c
 	$(CC) $(cFLAGS) -I /usr/include -Imlx -O3 -o $@ -c $<
 
 clean:
 	make -C $(PATH_MLX) clean
-	${RM} $(OBJS)
-	@echo "[$(_RED)!$(_END)] Removing objects ...  [$(_GREEN)SUCCESS$(_END)]"
+	${RM} $(DIR_OBJ)/$(OBJS)
+	for i in $(DIR_OBJ)/$(OBJS) ; do printf "make: $(_BLUE)clean$(_END): removing objects... :" ; printf "\\t$$i\\r" ; sleep 0.4 ; printf "\033[0K\r" ; done
+	echo "make: $(_BLUE)clean$(_END): Removing object files ...\t\t\t[ $(_GREEN)DONE$(_END) ]\n"
 
 fclean: clean
 	${RM} $(NAME)
-	@echo "[$(_RED)!$(_END)] Removing .out ...	  [$(_GREEN)SUCCESS$(_END)]"
+	if [ -d "$(DIR_OBJ)" ]; then $(RM) "$(DIR_OBJ)"; fi
+	echo "make: $(_BLUE)fclean$(_END): Removing repertory : .objects ...\t\t[ $(_GREEN)DONE$(_END) ]"
+	echo "make: $(_BLUE)fclean$(_END): Removing the executable ...\t\t[ $(_GREEN)DONE$(_END) ]\n"
+#if [ -f "$(BUG_REPORT)" ]; then rm -f "$(BUG_REPORT)" ; echo "[$(_RED)!$(_END)] Removing scan report file ...\t\t\t[ $(_GREEN)DONE$(_END) ]"; fi
 
 re: fclean all
 
+# No usefull for this project
 leak: re
-	@echo "Choose a map (.cub)"
-	@echo -n "> "
-	@read ${path_file}
-	@echo "\t\t\t\t\t$(_BG_CYAN)LEAK TEST$(_END) (valgrind)"
-	@valgrind --suppressions=.leaks.txt ./$(NAME) ${path_file}
+	echo "\t\t\t$(_BG_CYAN)LEAK FEATURE$(_END)"
+	echo "\t\t\t(valgrind)\n"
+	echo "make: $(_BLUE)leak$(_END): Lauching [$(_YELLOW)$(NAME)$(_END)] with valgrind ...\n"
+	echo "make: $(_BLUE)leak$(_END): Choose a map (.cub)"
+	read -p "filepath:> " filepath || ([ -f "filepath" ] && valgrind --leak-check=full --suppressions=.leaks.txt ./$(NAME) filepath || echo "make: valgrind:> file does not exist or is invalid.")
+# if [ $$?  ]
+
+gitp: fclean
+	echo "\t\t\t$(_BG_CYAN)GITP FEATURES$(_END)\n"
+	git add . 
+	echo "make: $(_BLUE)gitp$(_END): Adding files ...\t\t\t\t[ $(_GREEN)DONE$(_END) ]"
+	echo "make: $(_BLUE)gitp$(_END): Committing ...\t\t\t\t[$(_BK_RED)FAILED$(_END)]"
+	echo "make: $(_BLUE)gitp$(_END): Need a name to commit."
+	echo -n "make: [$(_RED)!$(_END)] " ; read -p "gitp:> " var ; echo "make: [$(_GREEN)!$(_END)] $(_BLUE)gitp$(_END): You will commit with this comment : \`$$var'" ; git commit -m $$var
+	echo "make: $(_BLUE)gitp$(_END): Committing ...\t\t\t\t[ $(_GREEN)DONE$(_END) ]\n"
+	git push
+	echo "make: $(_BLUE)gitp$(_END): Pushing ...\t\t\t\t\t[ $(_GREEN)DONE$(_END) ]"
+	bash .script_bar.sh
+	echo "make: $(_BLUE)gitp$(_END): Local repository is up to date. Ready to $(_U_WHITE)pull$(_END) or $(_U_WHITE)merge$(_END)."
 
 debug : fclean
-	@echo "\t\t\t\t\t$(_BG_CYAN)BUGS SCAN$(_END)"
-	@scan-build-12 make -j | grep "scan-build:"
+	echo "\t\t\t\t$(_BG_CYAN)BUGS SCAN$(_END)"
+	if [ -f "$(BUG_REPORT)" ]; then $(RM) "$(BUG_REPORT)"; fi
+	scan-build-12 make -j > $(BUG_REPORT) | grep "scan-build:" || ([ $$? -eq 0 ] && echo -e "$(_BLUE)debug$(_END): scan report saved in file : `$(BUG_REPORT)'" || echo -e make: $(_BLUE)debug$(_END): Debug scan failed.
 
-gitt: fclean
-	@echo "\n"
-	@echo "\t\t\t\t\t$(_BG_CYAN)GIT FEATURES$(_END)\n"
-	git add . 
-	@echo "[$(_GREEN)!$(_END)] Adding files ... 	  [$(_GREEN)SUCCESS$(_END)]"
-	@echo "[$(_RED)!$(_END)] Committing ... 	  [$(_BK_RED)  FAIL $(_END)]"
-	@read -p "--> Need a name to commit (one word)&> " var
-	git commit -m $var
-	@echo "[$(_GREEN)!$(_END)] Committing ... 	  [$(_GREEN)SUCCESS$(_END)]\n"
-	git push
-	@echo "[$(_GREEN)!$(_END)] Pushing :		    [$(_GREEN)SUCCESS$(_END)]\n"
-	@bash .script_bar.sh
-	@echo "--> Repo up to pull or merge"
+# .INIT : <commande à exécuter au début du make>
+.INIT:
 
-.PHONY : all clean fclean re leak debug git
+# .DEFAULT : <commande à exécuter en cas d'erreur >
+.DEFAULT : if [ $$? -eq 0 ]; then echo "make: $(_RED)FAIL$(_END)"
+
+# .DONE : <commande exécuter à la fin de make>
+.DONE : if [ -f "$(BUG_REPORT)" ]; then $(RM) "$(BUG_REPORT)"; fi
+
+# .IGNORE: Evite au make de s'arrêter en cas d'erreur
+.IGNORE :
+
+# .SILENT: N'affiche pas les commandes exécutées
+.SILENT:
+
+# .PRECIOUS: <fichier>* Ne pas détruit pas les fichiers ..
+.PRECIOUS:
+
+# Test if a cmd worked
+# $(COMP) $(SRC) -o $(NAME) $(LDFLAGS) $(CFLAGS) || ([ $$? -eq 0 ] && echo -e "\033[31mCompilation success!\033[0m" || echo -e "\033[32mCompilation ABORTEDed!\033[0m")
+
+# .PHONY : <cible>* Déclares les cibles qui ne sont pas des fichiers
+.PHONY : all clean fclean re leak gitp #debug

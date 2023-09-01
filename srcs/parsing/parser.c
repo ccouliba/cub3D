@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:55:31 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/02 05:22:23 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 06:18:17 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	init_config(t_config *config)
 {
 	config->direction = 0;
-	config->position[0] = 0;
-	config->position[1] = 0;
+	config->pos[0] = 0;
+	config->pos[1] = 0;
 	config->map_size[0] = 0;
 	config->map_size[1] = 0;
 	config->north = NULL;
@@ -45,8 +45,8 @@ static void	map_position(t_config *config)
 		{
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != ' ')
 			{
-				config->position[0] = i;
-				config->position[1] = j;
+				config->pos[0] = i;
+				config->pos[1] = j;
 			}
 			++j;
 		}

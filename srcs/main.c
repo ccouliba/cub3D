@@ -6,17 +6,17 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/02 02:37:22 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/05/02 06:29:44 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-static int	init_game(int ac, char **av)
+static int	init_game(int ac, char **av, t_config *config)
 {
-	t_config	config;
+	// t_config	config;
 
-	if (parser(ac, av, &config))
+	if (parser(ac, av, config))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -51,24 +51,27 @@ static void	check_win_size(int width, int height)
 int	main(int ac, char **av)
 {
 	t_mlx		img;
+	t_game		game;
 
-	if (init_game(ac, av))
+	ft_bzero(&game, (sizeof(t_game)));
+	if (init_game(ac, av, &game.config))
 		return (1);
 	img.mlx = mlx_init();
 	if (!img.mlx)
 		return (1);
 	check_win_size(WIDTH, HEIGHT);
-	img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "cub3D");
+	img.win = mlx_new_window(img.mlx, WIDTH, HEIGHT, "CUB3D");
 	if (!img.win)
 		return (1);
 	img.img = mlx_new_image(img.mlx, WIDTH, HEIGHT);
 	if (!img.img)
 		return (1);
-	img.addr = (int *)mlx_get_data_addr(img.img, &img.bpp,
+	img.addr = mlx_get_data_addr(img.img, &img.bpp,
 			&img.size_line, &img.endian);
 	if (!img.addr)
 		return (EXIT_FAILURE);
-	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
+	color_line(&img, 800, 100);
+	mlx_loop_hook(img.mlx, &raycasting, &game);
 	mlx_key_hook(img.win, get_key_code, &img);
 	mlx_hook(img.win, 17, 0L, exit_game, &img);
 	mlx_loop(img.mlx);
