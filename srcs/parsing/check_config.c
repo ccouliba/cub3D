@@ -99,7 +99,7 @@ static int	check_config_line(t_config *config, char *line)
 			return (free_double_p(s), EXIT_FAILURE);
 		if (get_direction_config(config, line, s[1]))
 			return (free_double_p(s), EXIT_FAILURE);
-		free_double_p(s);
+		//free_double_p(s);
 	}
 	else if (*line == 'F' || *line == 'C')
 	{
