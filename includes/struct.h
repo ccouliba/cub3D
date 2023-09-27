@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/08/28 13:51:24 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:51:19 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ typedef struct s_ray
 	double	raySin;
 	double	angle;
 }				t_ray;
+
+typedef struct s_texture
+{
+	int		endian;
+	int		bpp;
+	int		size_line;
+	int		width;
+	int		height;
+	int		len;
+	char	*name;
+	void	*ptr;
+	void	*data;
+}				t_tex;
 
 typedef struct s_mlx
 {
@@ -54,23 +67,13 @@ typedef struct s_mlx
 	int				bpp;
 	int				size_line;
 	int				endian;
-	// int				*texture[4];
+	t_tex			texs[4]; /*norht, south, west, east*/
 	int				re_buf;
 	char			*addr;
 	int				**buf;
 	void			*mlx;
 	void			*win;
 	void			*img;
-	void			*n_img;
-	void			*s_img;
-	void			*e_img;
-	void			*w_img;
-	void			*tex_data;
-	int				tex_bpp;
-	int				tex_size_line;
-	int				tex_endian;
-	int				tex_height;
-	int				tex_width;
 }				t_mlx;
 
 typedef struct s_list
@@ -94,10 +97,7 @@ typedef struct s_config
 	int				direction;
 	int				pos[2];
 	int				map_size[2];
-	char			*north;
-	char			*south;
-	char			*west;
-	char			*east;
+	char			*tex_files[4]; /*order: north, south, east, west*/
 	char			*floor;
 	char			*ceiling;
 	char			**map;

@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:55:31 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/04/26 16:33:48 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/09/27 13:21:05 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ void	init_config(t_config *config)
 	config->pos[1] = 0;
 	config->map_size[0] = 0;
 	config->map_size[1] = 0;
-	config->north = NULL;
-	config->south = NULL;
-	config->west = NULL;
-	config->east = NULL;
 	config->floor = NULL;
 	config->ceiling = NULL;
 	config->map = (char **) NULL;

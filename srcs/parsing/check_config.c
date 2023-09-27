@@ -69,13 +69,13 @@ static int	get_surface_config(t_config *config, char *line)
 static int	get_direction_config(t_config *config, char *line, char *file)
 {
 	if (!ft_strncmp(line, NORTH, 2))
-		config->north = file;
+		config->tex_files[0] = file;
 	else if (!ft_strncmp(line, SOUTH, 2))
-		config->south = file;
+		config->tex_files[1] = file;
 	else if (!ft_strncmp(line, WEST, 2))
-		config->west = file;
+		config->tex_files[2] = file;
 	else if (!ft_strncmp(line, EAST, 2))
-		config->east = file;
+		config->tex_files[3] = file;
 	else if (*line == 'F' || *line == 'C')
 	{
 		if (get_surface_config(config, line))

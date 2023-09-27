@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/08/28 13:51:28 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/09/27 14:22:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,26 @@ static void	check_win_size(int width, int height)
 		return ;
 }
 
-int	ft_load_tex(t_game game)
+int	ft_load_tex(t_game *game)
 {
 	t_mlx	*mlx;
 	t_config *config;
 
-	config = &game.config;
-	mlx = &game.img;
-	mlx->n_img = mlx_xpm_file_to_image(game->img->mlx, config.north, &img->tex_width, &img->tex_height);
+	config = &game->config;
+	mlx = &game->img;
+	dprintf(2, "tex_name = %s\n", config->tex_files[0] + 2);
+	dprintf(2, "tex_name = %s\n", config->tex_files[1] + 2);
+	dprintf(2, "tex_name = %s\n", config->tex_files[2] + 2);
+	dprintf(2, "tex_name = %s\n", config->tex_files[3] + 2);
+	mlx->texs[0].ptr = mlx_xpm_file_to_image(mlx->mlx, config->tex_files[0], &mlx->texs[0].width, &mlx->texs[0].height);
+	mlx->texs[0].data = mlx_get_data_addr(mlx->texs[0].ptr, &mlx->texs[0].bpp, &mlx->texs[0].size_line, &mlx->texs[0].endian);
+	mlx->texs[1].ptr = mlx_xpm_file_to_image(mlx->mlx, config->tex_files[1], &mlx->texs[1].width, &mlx->texs[1].height);
+	mlx->texs[1].data = mlx_get_data_addr(mlx->texs[1].ptr, &mlx->texs[1].bpp, &mlx->texs[1].size_line, &mlx->texs[1].endian);
+	mlx->texs[2].ptr = mlx_xpm_file_to_image(mlx->mlx, config->tex_files[2], &mlx->texs[2].width, &mlx->texs[2].height);
+	mlx->texs[2].data = mlx_get_data_addr(mlx->texs[2].ptr, &mlx->texs[2].bpp, &mlx->texs[2].size_line, &mlx->texs[2].endian);
+	mlx->texs[3].ptr = mlx_xpm_file_to_image(mlx->mlx, config->tex_files[3], &mlx->texs[3].width, &mlx->texs[3].height);
+	mlx->texs[3].data = mlx_get_data_addr(mlx->texs[3].ptr, &mlx->texs[3].bpp, &mlx->texs[3].size_line, &mlx->texs[3].endian);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -125,11 +137,12 @@ int	main(int ac, char **av)
 		return (printf("No Address\n"), 1);
 	printf_map(game);
 	mlx_get_screen_size(img->mlx, &game.param.screenx, &game.param.screeny);
-	img->tex_img = mlx_xpm_file_to_image(img->mlx, "textures/bricksx64.xpm", &img->tex_width, &img->tex_height);
-	img->tex_data = mlx_get_data_addr(img->tex_img, &img->tex_bpp, &img->tex_size_line, &img->tex_endian);
-	dprintf(2, "tex_width = %d, tex_height = %d\n", img->tex_width, img->tex_height);
+	//img->tex_img = mlx_xpm_file_to_image(img->mlx, "textures/bricksx64.xpm", &img->tex_width, &img->tex_height);
+	//img->tex_data = mlx_get_data_addr(img->tex_img, &img->tex_bpp, &img->tex_size_line, &img->tex_endian);
+	//dprintf(2, "tex_width = %d, tex_height = %d\n", img->tex_width, img->tex_height);
 	img->p_x = game.config.pos[1] + 0.5;
 	img->p_y = game.config.pos[0] + 0.5;
+	ft_load_tex(&game);
 	//mlx_hook(img->win, 17, 0L, exit_mlx, &img);
 	mlx_loop_hook(img->mlx, &raycasting, &game);
 	mlx_hook(img->win, 2, 1L << 0, &press_key, img);
