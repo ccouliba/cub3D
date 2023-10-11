@@ -1,18 +1,6 @@
 #include "../../includes/cub3D.h"
 #include <math.h>
 
-//INITIALISER TOUT AVANT SEND_RAYS
-int	check_direcion(float ray_x, float ray_y, char **map)
-{
-	if (map[(int)(ray_y + 0.2)][(int)ray_x] == '1')
-		return (1);
-	if (map[(int)(ray_y - 0.2)][(int)ray_x] == '1')
-		return (0);
-	if (map[(int)ray_y][(int)(ray_x + 0.2)] == '1')
-		return (3);
-	return (2);
-}
-
 int	hit_wall(t_game *game, int i)
 {
 	t_mlx			*mlx;
@@ -21,34 +9,30 @@ int	hit_wall(t_game *game, int i)
 
 	map = game->config.map;
 	mlx = &game->img;
+
+	if ((int)mlx->ray.dy < game->config.map_size[0] && (int)mlx->ray.last_x - (int)mlx->ray.dx &&
+		(int)mlx->ray.dx < ft_strlen(game->config.map[(int)mlx->ray.dy]))
+	{
+		if (map[(int)mlx->ray.dy][(int)mlx->ray.dx] == '1')
+		{
+			if (mlx->ray.dx > mlx->p_x && map[(int)mlx->ray.dy][(int)mlx->ray.dx - 1] == '0') /*west*/
+				return (color_vline(mlx, i, distx(mlx), mlx->texs[2]), 1);
+			if (mlx->ray.dx < mlx->p_x && map[(int)mlx->ray.dy][(int)mlx->ray.dx + 1] == '0') /*east*/
+				return (color_vline(mlx, i, distx(mlx), mlx->texs[3]), 1);
+		}
+		mlx->ray.last_x = mlx->ray.dx;
+	}
 	if ((int)mlx->ray.dy < game->config.map_size[0] && (int)mlx->ray.last_y - (int)mlx->ray.dy &&
 		(int)mlx->ray.dx < ft_strlen(game->config.map[(int)mlx->ray.dy]))
 	{
 		if (map[(int)mlx->ray.dy][(int)mlx->ray.dx] == '1')
 		{
-			if ((int)mlx->ray.last_y - (int)mlx->ray.dy && (int)mlx->ray.last_x - (int)mlx->ray.dx)
-				return (color_vline(mlx, i, disty(mlx), mlx->texs[0]), 1);
 			if (mlx->ray.dy < mlx->p_y) /*north*/
 				return (color_vline(mlx, i, disty(mlx), mlx->texs[0]), 1);
 			if (mlx->ray.dy > mlx->p_y) /*south*/
 				return (color_vline(mlx, i, disty(mlx), mlx->texs[1]), 1);	
 		}
 		mlx->ray.last_y = mlx->ray.dy;
-	}
-	if ((int)mlx->ray.dy < game->config.map_size[0] && (int)mlx->ray.last_x - (int)mlx->ray.dx &&
-		(int)mlx->ray.dx < ft_strlen(game->config.map[(int)mlx->ray.dy]))
-	{
-		if (map[(int)mlx->ray.dy][(int)mlx->ray.dx] == '1')
-		{
-			direction = check_direction(mlx->ray.dx, mlx->ray.dy, map);
-			if ((int)mlx->ray.last_y - (int)mlx->ray.dy && (int)mlx->ray.last_x - (int)mlx->ray.dx)
-				return (color_vline(mlx, i, distx(mlx), mlx->texs[check_direction(mlx->ray.dx, mlx->ray.dy, map)]), 1);
-			if (mlx->ray.dx > mlx->p_x) /*west*/
-				return (color_vline(mlx, i, distx(mlx), mlx->texs[2]), 1);
-			if (mlx->ray.dx < mlx->p_x) /*east*/
-				return (color_vline(mlx, i, distx(mlx), mlx->texs[3]), 1);
-		}
-		mlx->ray.last_x = mlx->ray.dx;
 	}
 	return (0);
 }
@@ -137,6 +121,10 @@ int	raycasting(t_game *game)
 		while (!hit_wall(game, i))
 			increment_ray(&mlx->ray);
 		mlx->ray.angle += FOV / (double)WIDTH;
+		if (mlx->ray.angle > 360)
+			mlx->ray.angle -= 360;
+		if (mlx->ray.angle < 0)
+			mlx->ray.angle += 360;
 		i++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);

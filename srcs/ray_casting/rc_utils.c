@@ -1,5 +1,22 @@
 #include "../../includes/cub3D.h"
 
+int		ft_ray_dir(double x, double y, double angle, char **map)
+{
+	if (angle < 180)
+	{
+		if (map[(int)(y + 0.2)][(int)x] == '0')
+			return (1);
+	}
+	if (angle > 180)
+	{
+		if (map[(int)(y - 0.2)][(int)x] == '0')
+			return (0);
+	}
+	if (map[(int)y][(int)(x + 0.2)] == '0')
+		return (2);
+	return (3);
+}
+
 double deg2rad(double deg)
 {
 	return deg * M_PI / 180.0;
