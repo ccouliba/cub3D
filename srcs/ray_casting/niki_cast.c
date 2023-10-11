@@ -19,9 +19,9 @@ int	hit_wall(t_game *game, int i)
 		if (map[(int)mlx->ray.dy][(int)mlx->ray.dx] == '1')
 		{
 			ret = 1;
-			if (mlx->ray.dx > mlx->p_x && (map[(int)mlx->ray.dy][(int)mlx->ray.dx - 1] == '0' ||  map[(int)mlx->ray.dy][(int)mlx->ray.dx - 1] == 'P')) /*west*/
+			if (mlx->ray.dx > mlx->p_x && map[(int)mlx->ray.dy][(int)mlx->ray.dx - 1] != '1') /*west*/
 				return (color_vline(mlx, i, distx(mlx), mlx->texs[2]), 1);
-			if (mlx->ray.dx < mlx->p_x && (map[(int)mlx->ray.dy][(int)mlx->ray.dx + 1] == '0' ||  map[(int)mlx->ray.dy][(int)mlx->ray.dx + 1] == 'P')) /*east*/
+			if (mlx->ray.dx < mlx->p_x && map[(int)mlx->ray.dy][(int)mlx->ray.dx + 1] != '1') /*east*/
 				return (color_vline(mlx, i, distx(mlx), mlx->texs[3]), 1);
 		}
 	}
@@ -31,9 +31,9 @@ int	hit_wall(t_game *game, int i)
 		if (map[(int)mlx->ray.dy][(int)mlx->ray.dx] == '1')
 		{
 			ret = 1;
-			if (mlx->ray.dy > mlx->p_y && (map[(int)mlx->ray.dy - 1][(int)mlx->ray.dx] == '0' || map[(int)mlx->ray.dy - 1][(int)mlx->ray.dx] == 'P')) /*north*/
+			if (mlx->ray.dy > mlx->p_y && map[(int)mlx->ray.dy - 1][(int)mlx->ray.dx] != '1') /*north*/
 				return (color_vline(mlx, i, disty(mlx), mlx->texs[0]), 1);
-			if (mlx->ray.dy < mlx->p_y && (map[(int)mlx->ray.dy + 1][(int)mlx->ray.dx] == '0' ||  map[(int)mlx->ray.dy + 1][(int)mlx->ray.dx] == 'P')) /*south*/
+			if (mlx->ray.dy < mlx->p_y && map[(int)mlx->ray.dy + 1][(int)mlx->ray.dx] != '1') /*south*/
 				return (color_vline(mlx, i, disty(mlx), mlx->texs[1]), 1);
 		}
 	}
