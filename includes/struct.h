@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/09/27 13:51:19 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/24 17:46:59 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_texture
 	char	*name;
 	void	*ptr;
 	void	*data;
+	float	texPosX;
 }				t_tex;
 
 typedef struct s_mlx

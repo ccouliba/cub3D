@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/06 19:27:44 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/24 20:26:17 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ void		color_vline(t_mlx *mlx, int x, double distance, t_tex tex);
 void		init_mlx(t_mlx *img);
 double		disty(t_mlx *mlx);
 double		distx(t_mlx *mlx);
+void		init_ray(t_mlx *mlx);
+void		move2(t_game *game, t_mlx *mlx, double new_x, double new_y);
+void		move(t_game *game);
+void		change_pos(t_game *game, t_mlx *mlx, double new_x, double new_y);
 
 /******************************************************************************/
 /*********************************** UTILS ************************************/

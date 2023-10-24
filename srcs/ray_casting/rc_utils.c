@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rc_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngenadie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 18:08:25 by ngenadie          #+#    #+#             */
+/*   Updated: 2023/10/24 18:22:43 by ngenadie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
 
-int		ft_ray_dir(double x, double y, double angle, char **map)
+int	ft_ray_dir(double x, double y, double angle, char **map)
 {
 	if (angle < 180)
 	{
@@ -17,34 +29,40 @@ int		ft_ray_dir(double x, double y, double angle, char **map)
 	return (3);
 }
 
-double deg2rad(double deg)
+double	deg2rad(double deg)
 {
-	return deg * M_PI / 180.0;
+	return (deg * M_PI / 180.0);
 }
 
-double distx(t_mlx *mlx)
+double	distx(t_mlx *mlx)
 {
-	mlx->xy = 'x';
+	float	dist;
+	float	fish;
+
 	if (mlx->ray.rayCos < 0)
 		mlx->ray.dx++;
 	mlx->ray.dx = floor(mlx->ray.dx);
-	float dist = sqrt(pow(mlx->p_x - mlx->ray.dx, 2) + pow(mlx->p_y - mlx->ray.dy, 2));
-	float fish = cos(deg2rad(fabs(mlx->ray.angle - mlx->angle)));
+	dist = sqrt(pow(mlx->p_x - mlx->ray.dx, 2)
+			+ pow(mlx->p_y - mlx->ray.dy, 2));
+	fish = cos(deg2rad(fabs(mlx->ray.angle - mlx->angle)));
 	return (dist * fish);
 }
 
-double disty(t_mlx *mlx)
+double	disty(t_mlx *mlx)
 {
-	mlx->xy = 'y';
+	float	dist;
+	float	fish;
+
 	if (mlx->ray.raySin < 0)
 		mlx->ray.dy++;
 	mlx->ray.dy = floor(mlx->ray.dy);
-	float dist = sqrt(pow(mlx->p_x - mlx->ray.dx, 2) + pow(mlx->p_y - mlx->ray.dy, 2));
-	float fish = cos(deg2rad(fabs(mlx->ray.angle - mlx->angle)));
+	dist = sqrt(pow(mlx->p_x - mlx->ray.dx, 2)
+			+ pow(mlx->p_y - mlx->ray.dy, 2));
+	fish = cos(deg2rad(fabs(mlx->ray.angle - mlx->angle)));
 	return (dist * fish);
 }
 
-void increment_ray(t_ray *ray)
+void	increment_ray(t_ray *ray)
 {
 	ray->dx += ray->rayCos;
 	ray->dy += ray->raySin;
