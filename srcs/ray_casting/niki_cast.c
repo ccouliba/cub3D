@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:42:14 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/25 17:10:05 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:35:39 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,8 @@ int	raycasting(t_game *game)
 	i = 0;
 	mlx = &game->img;
 	move(game);
-	//printf("direction = %c\n", game->config.direction);
-	//printf("angle = %f\n", mlx->angle);
 	mlx->ray.angle = mlx->angle - HALF_FOV;
 	color_line(mlx, 800, 100);
-	dprintf(2, "==========================\n");
 	while (i < WIDTH)
 	{
 		init_ray(mlx);

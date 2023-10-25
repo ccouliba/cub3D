@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 17:11:09 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:35:04 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ int				after_start_pos(char *line);
 /******************************************************************************/
 /************************************ MLX *************************************/
 /******************************************************************************/
+int				ft_load_tex(t_game *game);
+t_config		init_game(int ac, char **av);
+int				game_init(t_game *game, t_mlx *img, int ac, char **av);
 void			player_direction(t_game game, t_mlx *mlx);
 int				check_direcion(float ray_x, float ray_y, char **map);
 void			my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
