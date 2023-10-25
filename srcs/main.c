@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 21:14:12 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:20:20 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@ t_config	init_game(int ac, char **av)
 	t_config	config;
 
 	if (parser(ac, av, &config))
-	{
-		if (config.s)
-			free_double_p(config.s);
 		exit(1);
-	}
 	return (config);
 }
 
