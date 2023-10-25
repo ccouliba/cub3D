@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:24:17 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/25 18:37:25 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:58:27 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ int	game_init(t_game *game, t_mlx *img, int ac, char **av)
 		return (1);
 	img->win = mlx_new_window(img->mlx, WIDTH, HEIGHT, "cub3D");
 	if (!img->win)
-		return (printf("No Window\n"), 1);
+		return (1);
 	img->img = mlx_new_image(img->mlx, WIDTH, HEIGHT);
 	if (!img->img)
-		return (printf("No Image\n"), 1);
+		return (1);
 	img->addr = (char *)mlx_get_data_addr(img->img, &img->bpp,
 			&img->size_line, &img->endian);
 	if (!img->addr)
-		return (printf("No Address\n"), 1);
+		return (1);
 	return (0);
 }
 

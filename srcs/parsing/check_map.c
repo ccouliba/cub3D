@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 05:37:28 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 18:27:48 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:57:01 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	check_map(t_config *config, char **line)
 			return (EXIT_FAILURE);
 		res += start_pos(config, map[i]);
 		if (after_start_pos(map[i]) || after_zero(map[i]))
-			return (printf("ERROR HERE\n"), EXIT_FAILURE);
+			return (EXIT_FAILURE);
 		++i;
 	}
 	if (res != 1 || check_around_zero(config->map) || check_walls(map[i - 1]))

@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:35:57 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 18:28:22 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:23:21 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,21 @@ static int	check_config_line(t_config *config, char *line)
 {
 	char	**s;
 
+	s = (char **) NULL;
 	if (!ft_strchr("NSWEFC", *line))
 		return (EXIT_FAILURE);
 	if (ft_strchr("NSWE", *line))
 	{
 		s = ft_split(line, ' ');
+		if (!s)
+			return (EXIT_FAILURE);
 		if (s[0] && ft_strlen(s[0]) != 2)
 			return (free_double_p(s), EXIT_FAILURE);
 		if (!s || !s[1] || s[2] || check_xpm_file(s[1]))
 			return (free_double_p(s), EXIT_FAILURE);
 		if (get_direction_config(config, line, s[1]))
 			return (free_double_p(s), EXIT_FAILURE);
+		// free_double_p(s);
 	}
 	else if (*line == 'F' || *line == 'C')
 	{
