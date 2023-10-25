@@ -6,11 +6,11 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 15:18:59 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/09 21:38:27 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:33:09 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 int	ft_strlen(char *s)
 {

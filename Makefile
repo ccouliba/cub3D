@@ -1,41 +1,16 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/10/24 21:31:26 by ngenadie         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/08/12 20:03:20 by ccouliba          #+#    #+#              #
-#    Updated: 2023/05/29 14:04:21 by ngenadie         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME		= cub3D
 
-include .color_code.txt
+CC			= clang -g3 -MMD
 
-CC			= @clang -g3 -MMD
-
-RM 			= @rm -rf
+RM 			= rm -rf
 
 PATH_MLX	= ./mlx/
 
 LINUX		= -I /usr/include -L /usr/lib/ -lmlx -L mlx -I mlx -lXext -l X11 -lm -lz
 
-LIBMLX		=	libmlx.a
+LIBMLX		= libmlx.a
 
-CFLAGS 		= #-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS 		= -Wall -Wextra -Werror #-g3 -fsanitize=address
 
 LIBMLX	:=	$(addprefix $(PATH_MLX), $(LIBMLX))
 
@@ -71,12 +46,12 @@ all: $(NAME)
 mlx/libmlx.a:
 			$(MAKE) -C $(PATH_MLX)
 
-$(NAME): ${OBJS} ${LIBMLX}
+$(NAME): $(OBJS) $(LIBMLX)
 		make -C $(PATH_MLX) all
-		$(CC) $(CFLAGS) $(OBJS) ${LINUX} -o $(NAME)
+		$(CC) $(CFLAGS) -Iincludes $(OBJS) $(LINUX) -o $(NAME)
 
 %o: %.c
-	$(CC) $(cFLAGS) -I /usr/include -Imlx -O3 -o $@ -c $<
+	$(CC) $(CFLAGS) -I/usr/include -Iincludes -Imlx -o $@ -c $<
 
 -include $(DPD)
 
@@ -89,4 +64,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : all clean fclean re leak debug git
+.PHONY : all clean fclean re

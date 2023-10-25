@@ -6,11 +6,11 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 12:07:00 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/10 12:50:34 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:34:27 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

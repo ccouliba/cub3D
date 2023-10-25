@@ -6,11 +6,11 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:57:14 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/05/03 22:12:15 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:34:27 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 void	free_elem(t_list *elem, void (*clr)())
 {

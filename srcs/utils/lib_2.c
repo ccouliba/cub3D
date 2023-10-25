@@ -6,11 +6,11 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:48:14 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/20 22:01:39 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:34:27 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 int	ft_atoi(char *str)
 {

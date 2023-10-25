@@ -1,4 +1,5 @@
-utils/list.o: utils/list.c utils/../includes/cub3D.h \
-  utils/../includes/incs.h utils/../includes/../mlx/mlx.h \
-  utils/../includes/struct.h utils/../includes/defines.h \
-  utils/../includes/gnl.h
+srcs/utils/list.o: srcs/utils/list.c srcs/utils/../../includes/cub3D.h \
+  srcs/utils/../../includes/incs.h \
+  srcs/utils/../../includes/../mlx/mlx.h \
+  srcs/utils/../../includes/struct.h srcs/utils/../../includes/defines.h \
+  srcs/utils/../../includes/gnl.h

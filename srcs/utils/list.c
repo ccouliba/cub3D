@@ -6,11 +6,11 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:57:45 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/02/28 12:58:12 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:34:27 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 t_list	*ft_lstnew(void *content)
 {
