@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:42:14 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/25 17:35:39 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:45:48 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	hit_wall2(t_game *game, int i, int ret)
 
 	map = game->config.map;
 	mlx = &game->img;
-	mlx->ceiling = game->config.ceiling_color;
-	mlx->floor = game->config.floor_color;
 	if ((int)mlx->ray.dy < game->config.map_size[0]
 		&& (int)mlx->ray.last_y - (int)mlx->ray.dy
 		&& (int)mlx->ray.dx < ft_strlen(game->config.map[(int)mlx->ray.dy]))
@@ -35,6 +33,9 @@ int	hit_wall2(t_game *game, int i, int ret)
 			if (mlx->ray.dy < mlx->p_y
 				&& map[(int)mlx->ray.dy + 1][(int)mlx->ray.dx] != '1')
 				return (color_vline(mlx, i, disty(mlx), mlx->texs[1]), 1);
+			if (mlx->ray.dy < mlx->p_y)
+				return (color_vline(mlx, i, disty(mlx), mlx->texs[1]), 1);
+			return (color_vline(mlx, i, disty(mlx), mlx->texs[0]), 1);
 		}
 	}
 	mlx->ray.last_y = mlx->ray.dy;
@@ -50,8 +51,6 @@ int	hit_wall(t_game *game, int i)
 
 	map = game->config.map;
 	mlx = &game->img;
-	mlx->ceiling = game->config.ceiling_color;
-	mlx->floor = game->config.floor_color;
 	ret = 0;
 	if ((int)mlx->ray.dy < game->config.map_size[0]
 		&& (int)mlx->ray.last_x - (int)mlx->ray.dx

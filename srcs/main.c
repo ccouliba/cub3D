@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 21:20:20 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:44:21 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int	main(int ac, char **av)
 	img->p_y = game.config.pos[0] + 0.5;
 	ft_load_tex(&game);
 	player_direction(game, img);
+	img->ceiling = game.config.ceiling_color;
+	img->floor = game.config.floor_color;
 	mlx_loop_hook(img->mlx, &raycasting, &game);
 	mlx_hook(img->win, 2, 1L << 0, &press_key, img);
 	mlx_hook(img->win, 3, 1L << 1, &release_key, img);
