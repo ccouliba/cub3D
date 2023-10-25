@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:24:17 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/25 18:58:27 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:52:32 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ void	init_mlx(t_mlx *mlx)
 
 void	init_ray(t_mlx *mlx)
 {
-		mlx->ray.last_x = mlx->p_x;
-		mlx->ray.last_y = mlx->p_y;
-		mlx->ray.dx = mlx->p_x;
-		mlx->ray.dy = mlx->p_y;
-		mlx->ray.raycos = cos(deg2rad(mlx->ray.angle)) / PRECISION;
-		mlx->ray.raysin = sin(deg2rad(mlx->ray.angle)) / PRECISION;
+	mlx->ray.last_x = mlx->p_x;
+	mlx->ray.last_y = mlx->p_y;
+	mlx->ray.dx = mlx->p_x;
+	mlx->ray.dy = mlx->p_y;
+	mlx->ray.raycos = cos(deg2rad(mlx->ray.angle)) / PRECISION;
+	mlx->ray.raysin = sin(deg2rad(mlx->ray.angle)) / PRECISION;
 }

@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 18:36:13 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:14:27 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@
 # define OFFSET 64
 # define TEXT_HEIGHT 32
 # define TEXT_WIDTH 32
-// # define MAP_WIDTH 32
-// # define MAP_HEIGHT 32
 # define WIDTH 640
 # define HEIGHT 480
 # define HALF_WIDTH 320

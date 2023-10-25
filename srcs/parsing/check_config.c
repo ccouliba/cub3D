@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:35:57 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 19:25:43 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:12:12 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ static int	get_surface_config(t_config *config, char *line)
 static int	get_direction_config(t_config *config, char *line, char *file)
 {
 	if (!ft_strncmp(line, NORTH, 2))
-		config->tex_files[0] = file;
+		config->tex_files[0] = ft_strdup(file);
 	else if (!ft_strncmp(line, SOUTH, 2))
-		config->tex_files[1] = file;
+		config->tex_files[1] = ft_strdup(file);
 	else if (!ft_strncmp(line, WEST, 2))
-		config->tex_files[2] = file;
+		config->tex_files[2] = ft_strdup(file);
 	else if (!ft_strncmp(line, EAST, 2))
-		config->tex_files[3] = file;
+		config->tex_files[3] = ft_strdup(file);
 	else if (*line == 'F' || *line == 'C')
 	{
 		if (get_surface_config(config, line))
@@ -88,22 +88,21 @@ static int	get_direction_config(t_config *config, char *line, char *file)
 
 static int	check_config_line(t_config *config, char *line)
 {
-	char	**s;
-
-	s = (char **) NULL;
 	if (!ft_strchr("NSWEFC", *line))
 		return (EXIT_FAILURE);
 	if (ft_strchr("NSWE", *line))
 	{
-		s = ft_split(line, ' ');
-		if (!s)
+		config->s = ft_split(line, ' ');
+		if (!config->s)
 			return (EXIT_FAILURE);
-		if (s[0] && ft_strlen(s[0]) != 2)
-			return (free_double_p(s), EXIT_FAILURE);
-		if (!s || !s[1] || s[2] || check_xpm_file(s[1]))
-			return (free_double_p(s), EXIT_FAILURE);
-		if (get_direction_config(config, line, s[1]))
-			return (free_double_p(s), EXIT_FAILURE);
+		if (config->s[0] && ft_strlen(config->s[0]) != 2)
+			return (free_double_p(config->s), EXIT_FAILURE);
+		if (!config->s || !config->s[1] || config->s[2]
+			|| check_xpm_file(config->s[1]))
+			return (free_double_p(config->s), EXIT_FAILURE);
+		if (get_direction_config(config, line, config->s[1]))
+			return (free_double_p(config->s), EXIT_FAILURE);
+		free_double_p(config->s);
 	}
 	else if (*line == 'F' || *line == 'C')
 	{

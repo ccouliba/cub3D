@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:55:31 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 19:18:41 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:56:53 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_config(t_config *config)
 	config->floor_color = 0;
 	config->ceiling_color = 0;
 	config->map = (char **) NULL;
+	config->s = (char **) NULL;
 }
 
 static void	get_map_config(t_config *config)

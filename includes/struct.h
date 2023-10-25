@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 18:42:26 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:32:52 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_config
 	unsigned int	floor_color;
 	unsigned int	ceiling_color;
 	char			**map;
+	char			**s;
 }				t_config;
 
 typedef struct s_param
