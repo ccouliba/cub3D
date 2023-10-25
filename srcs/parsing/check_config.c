@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:35:57 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 19:23:21 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:25:43 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ static int	check_config_line(t_config *config, char *line)
 			return (free_double_p(s), EXIT_FAILURE);
 		if (get_direction_config(config, line, s[1]))
 			return (free_double_p(s), EXIT_FAILURE);
-		// free_double_p(s);
 	}
 	else if (*line == 'F' || *line == 'C')
 	{
