@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/24 17:49:38 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:36:13 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@
 // # define MAP_HEIGHT 32
 # define WIDTH 640
 # define HEIGHT 480
-# define HALF_WIDTH WIDTH / 2
-# define HALF_HEIGHT HEIGHT / 2
+# define HALF_WIDTH 320
+# define HALF_HEIGHT 240
 # define FOV 40
-# define HALF_FOV FOV / 2
+# define HALF_FOV 20
 # define PRECISION 1024
 # define WALL_GAP 0.1
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 05:37:28 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 17:15:23 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:27:48 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	**get_map(char **line)
 	int		first_line;
 	char	**map;
 
-	if (!line)// || !*line)
+	if (!line)
 		return (NULL);
 	i = get_map_beginning(line);
 	if (!line[i] || *line[i])

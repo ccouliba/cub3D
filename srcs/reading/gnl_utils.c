@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 09:50:41 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/09 21:17:26 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:31:14 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ char	*ft_substr(char *s, int start, int len)
 	int		i;
 	char	*sub;
 
-	// if (!s)
-	// 	return (NULL);
 	sub = malloc(sizeof(char) * (len - start + 1));
 	if (!sub)
 		return (NULL);

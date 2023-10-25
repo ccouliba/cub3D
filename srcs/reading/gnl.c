@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 14:46:46 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/09 21:14:25 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:32:57 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ static int	get_stock(int fd, char **stock)
 	char	buf[BUFFER_SIZE + 1];
 	int		res;
 
-	while ((find_bs_n(*stock) == -1) && (res = read(fd, buf, BUFFER_SIZE)) > 0)
+	res = 1;
+	while ((find_bs_n(*stock) == -1) && res > 0)
 	{
+		res = read(fd, buf, BUFFER_SIZE);
 		buf[res] = '\0';
 		*stock = ft_strjoin(*stock, buf);
 		if (!*stock)

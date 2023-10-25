@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 17:35:04 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:35:07 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int				game_init(t_game *game, t_mlx *img, int ac, char **av);
 void			player_direction(t_game game, t_mlx *mlx);
 int				check_direcion(float ray_x, float ray_y, char **map);
 void			my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
-int	 			raycasting(t_game *game);
+int				raycasting(t_game *game);
 void			draw(t_mlx *img);
 void			looping(t_game *game);
 void			increment_ray(t_ray *ray);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:24:17 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/25 17:33:01 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:37:25 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ void	init_ray(t_mlx *mlx)
 		mlx->ray.last_y = mlx->p_y;
 		mlx->ray.dx = mlx->p_x;
 		mlx->ray.dy = mlx->p_y;
-		mlx->ray.rayCos = cos(deg2rad(mlx->ray.angle)) / PRECISION;
-		mlx->ray.raySin = sin(deg2rad(mlx->ray.angle)) / PRECISION;
+		mlx->ray.raycos = cos(deg2rad(mlx->ray.angle)) / PRECISION;
+		mlx->ray.raysin = sin(deg2rad(mlx->ray.angle)) / PRECISION;
 }

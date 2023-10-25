@@ -52,11 +52,13 @@ int	around_zero(char **line, int i, int j)
 		return (EXIT_FAILURE);
 	if (!line[i - 1][j + 1] || !ft_strchr("01NSWE", line[i - 1][j + 1]))
 		return (EXIT_FAILURE);
-	if (!line[i + 1] || !line[i + 1][j - 1] || !ft_strchr("01NSWE", line[i + 1][j - 1]))
+	if (!line[i + 1] || !line[i + 1][j - 1]
+		|| !ft_strchr("01NSWE", line[i + 1][j - 1]))
 		return (EXIT_FAILURE);
 	if (!line[i + 1] || !line[i + 1][j] || !ft_strchr("01NSWE", line[i + 1][j]))
 		return (EXIT_FAILURE);
-	if (!line[i + 1] || !line[i + 1][j + 1] || !ft_strchr("01NSWE", line[i + 1][j + 1]))
+	if (!line[i + 1] || !line[i + 1][j + 1]
+		|| !ft_strchr("01NSWE", line[i + 1][j + 1]))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

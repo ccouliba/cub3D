@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rc_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:08:25 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/24 18:22:43 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:37:25 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ double	distx(t_mlx *mlx)
 	float	dist;
 	float	fish;
 
-	if (mlx->ray.rayCos < 0)
+	if (mlx->ray.raycos < 0)
 		mlx->ray.dx++;
 	mlx->ray.dx = floor(mlx->ray.dx);
 	dist = sqrt(pow(mlx->p_x - mlx->ray.dx, 2)
@@ -53,7 +53,7 @@ double	disty(t_mlx *mlx)
 	float	dist;
 	float	fish;
 
-	if (mlx->ray.raySin < 0)
+	if (mlx->ray.raysin < 0)
 		mlx->ray.dy++;
 	mlx->ray.dy = floor(mlx->ray.dy);
 	dist = sqrt(pow(mlx->p_x - mlx->ray.dx, 2)
@@ -64,6 +64,6 @@ double	disty(t_mlx *mlx)
 
 void	increment_ray(t_ray *ray)
 {
-	ray->dx += ray->rayCos;
-	ray->dy += ray->raySin;
+	ray->dx += ray->raycos;
+	ray->dy += ray->raysin;
 }

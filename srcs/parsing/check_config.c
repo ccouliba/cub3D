@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:35:57 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 16:17:38 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:28:22 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ static int	check_surface_file(t_config *config, char *s)
 	i = 0;
 	while (tmp[i])
 	{
-		// printf("tmp[i] = [%s]- len = [%d]\n", tmp[i], ft_strlen(tmp[i]));
 		if (check_number(tmp[i]))
 			return (free_double_p(tmp), EXIT_FAILURE);
 		res = ft_atoi(tmp[i]);
 		if (res < 0 || res > 255)
 			return (free_double_p(tmp), EXIT_FAILURE);
-		// rgbColor = (redValue << 16) | (greenValue << 8) | blueValue
 		++i;
 	}
 	return (free_double_p(tmp), EXIT_SUCCESS);
@@ -58,7 +56,6 @@ static int	get_surface_config(t_config *config, char *line)
 			if (check_surface_file(config, config->floor))
 				return (EXIT_FAILURE);
 			config->floor_color = get_config_color(config->floor);
-			// printf("ceiling color = [%X]", config->floor_color);
 		}
 		else if (!ft_strncmp(line, "C", 1))
 		{
@@ -66,7 +63,6 @@ static int	get_surface_config(t_config *config, char *line)
 			if (check_surface_file(config, config->ceiling))
 				return (EXIT_FAILURE);
 			config->ceiling_color = get_config_color(config->ceiling);
-			// printf("ceiling color = [%X]", config->ceiling_color);
 		}
 	}
 	return (EXIT_SUCCESS);
@@ -105,7 +101,6 @@ static int	check_config_line(t_config *config, char *line)
 			return (free_double_p(s), EXIT_FAILURE);
 		if (get_direction_config(config, line, s[1]))
 			return (free_double_p(s), EXIT_FAILURE);
-		//free_double_p(s);
 	}
 	else if (*line == 'F' || *line == 'C')
 	{

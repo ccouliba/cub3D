@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:00:17 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/22 21:49:11 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:28:43 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	check_flag(char **file)
 	while (*file)
 	{
 		get_flag_line(&flag, *file);
-		// printf("*file : [%s]\nfloor = [%d]\nceiling = [%d]\n", *file, flag.floor, flag.ceiling);
 		++file;
 	}
 	if (check_flag_value(&flag))

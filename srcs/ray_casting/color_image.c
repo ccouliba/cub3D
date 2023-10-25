@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_image.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:08:17 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/25 16:28:11 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:39:10 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	color_vline(t_mlx *mlx, int x, double distance, t_tex tex)
 	float	y;
 	float	yincrement;
 
-	tex.texPosX = (int)((tex.width * (mlx->ray.dx + mlx->ray.dy))) % tex.width;
+	tex.texpos_x = (int)((tex.width * (mlx->ray.dx + mlx->ray.dy))) % tex.width;
 	wall_h = HALF_HEIGHT / distance;
 	j = HALF_HEIGHT - wall_h;
 	yincrement = tex.height / (wall_h * 2);
@@ -58,11 +58,11 @@ void	color_vline(t_mlx *mlx, int x, double distance, t_tex tex)
 		y = (tex.height - (tex.height * HEIGHT) / (2 * wall_h)) / 2;
 		yincrement = (tex.height * (HEIGHT / ((2 * wall_h)))) / HEIGHT;
 	}
-	while (j < HEIGHT && j < HALF_HEIGHT + wall_h)
+	while (j < HEIGHT && j < HALF_HEIGHT + wall_h - 2)
 	{
 		adr = (int *)(mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
 		*adr = *((int *)tex.data + (int)(((int)y
-						* (tex.size_line / (tex.bpp / 8)) + (int)tex.texPosX)));
+						* (tex.size_line / (tex.bpp / 8)) + (int)tex.texpos_x)));
 		j++;
 		y += yincrement;
 	}

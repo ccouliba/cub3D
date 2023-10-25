@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 16:55:24 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:38:00 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_ray
 	double	dy;
 	double	last_x;
 	double	last_y;
-	double	rayCos;
-	double	raySin;
+	double	raycos;
+	double	raysin;
 	double	angle;
 }				t_ray;
 
@@ -39,7 +39,7 @@ typedef struct s_texture
 	char	*name;
 	void	*ptr;
 	void	*data;
-	float	texPosX;
+	float	texpos_x;
 }				t_tex;
 
 typedef struct s_mlx
@@ -100,7 +100,7 @@ typedef struct s_config
 	int				direction;
 	int				pos[2];
 	int				map_size[2];
-	char			*tex_files[4]; /*order: north, south, east, west*/
+	char			*tex_files[4];
 	char			*floor;
 	char			*ceiling;
 	unsigned int	floor_color;
@@ -134,7 +134,5 @@ typedef struct s_game
 	t_param			param;
 	t_config		config;
 }				t_game;
-
-//typedef int(*t_getter[5])(t_config *, char *);
 
 #endif
