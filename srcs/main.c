@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 17:34:52 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:30:31 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ static int	press_key(int key_code, void *ptr)
 		mlx->a = 1;
 	if (key_code == RIGHT)
 		mlx->d = 1;
+	else if (key_code == ESC)
+	{
+		exit_mlx(mlx);
+		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
@@ -86,6 +91,7 @@ int	main(int ac, char **av)
 	mlx_loop_hook(img->mlx, &raycasting, &game);
 	mlx_hook(img->win, 2, 1L << 0, &press_key, img);
 	mlx_hook(img->win, 3, 1L << 1, &release_key, img);
+	mlx_hook(img->win, 17, 0L, exit_mlx, img);
 	mlx_loop(img->mlx);
 	return (0);
 }
