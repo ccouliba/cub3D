@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:08:17 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/25 18:39:10 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:42:26 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	color_vline(t_mlx *mlx, int x, double distance, t_tex tex)
 	float	y;
 	float	yincrement;
 
-	tex.texpos_x = (int)((tex.width * (mlx->ray.dx + mlx->ray.dy))) % tex.width;
+	tex.texposx = (int)((tex.width * (mlx->ray.dx + mlx->ray.dy))) % tex.width;
 	wall_h = HALF_HEIGHT / distance;
 	j = HALF_HEIGHT - wall_h;
 	yincrement = tex.height / (wall_h * 2);
@@ -62,7 +62,7 @@ void	color_vline(t_mlx *mlx, int x, double distance, t_tex tex)
 	{
 		adr = (int *)(mlx->addr + (j * mlx->size_line + x * (mlx->bpp / 8)));
 		*adr = *((int *)tex.data + (int)(((int)y
-						* (tex.size_line / (tex.bpp / 8)) + (int)tex.texpos_x)));
+						* (tex.size_line / (tex.bpp / 8)) + (int)tex.texposx)));
 		j++;
 		y += yincrement;
 	}
