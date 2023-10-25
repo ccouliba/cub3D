@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 16:07:52 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:55:24 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_mlx
 	int				re_buf;
 	char			*addr;
 	int				**buf;
+	unsigned int	ceiling;
+	unsigned int	floor;
 	void			*mlx;
 	void			*win;
 	void			*img;

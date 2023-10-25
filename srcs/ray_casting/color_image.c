@@ -6,7 +6,7 @@
 /*   By: ngenadie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:08:17 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/24 18:08:19 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:28:11 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	color_line(t_mlx *mlx, int y, int distance)
 			adr = (int *)(mlx->addr + (j
 						* mlx->size_line + i * (mlx->bpp / 8)));
 			if (j < HEIGHT / 2)
-				*adr = 1 << 7 | 1 << 14;
+				*adr = mlx->floor;
 			else
-				*adr = 1 << 14;
+				*adr = mlx->ceiling;
 			i++;
 		}
 		i = 0;
