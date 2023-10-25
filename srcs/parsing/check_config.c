@@ -6,18 +6,19 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:35:57 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/03/22 22:01:03 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:17:38 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static int	check_surface_file(char *s)
+static int	check_surface_file(t_config *config, char *s)
 {
 	int		i;
 	int		res;
 	char	**tmp;
 
+	(void)config;
 	if (occurences(s, ',') != 2)
 		return (EXIT_FAILURE);
 	tmp = ft_split(s, ',');
@@ -34,6 +35,7 @@ static int	check_surface_file(char *s)
 		res = ft_atoi(tmp[i]);
 		if (res < 0 || res > 255)
 			return (free_double_p(tmp), EXIT_FAILURE);
+		// rgbColor = (redValue << 16) | (greenValue << 8) | blueValue
 		++i;
 	}
 	return (free_double_p(tmp), EXIT_SUCCESS);
@@ -53,14 +55,18 @@ static int	get_surface_config(t_config *config, char *line)
 		if (!ft_strncmp(line, "F", 1))
 		{
 			config->floor = tmp;
-			if (check_surface_file(config->floor))
+			if (check_surface_file(config, config->floor))
 				return (EXIT_FAILURE);
+			config->floor_color = get_config_color(config->floor);
+			// printf("ceiling color = [%X]", config->floor_color);
 		}
 		else if (!ft_strncmp(line, "C", 1))
 		{
 			config->ceiling = tmp;
-			if (check_surface_file(config->ceiling))
+			if (check_surface_file(config, config->ceiling))
 				return (EXIT_FAILURE);
+			config->ceiling_color = get_config_color(config->ceiling);
+			// printf("ceiling color = [%X]", config->ceiling_color);
 		}
 	}
 	return (EXIT_SUCCESS);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 15:20:16 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:16:34 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ static int	press_key(int key_code, void *ptr)
 	return (EXIT_SUCCESS);
 }
 
-static void	check_win_size(int width, int height)
-{
-	if (!width || !height)
-		print_error(WRONG_SIZE, 2);
-	if (width < 1000 || width > INT_MAX || height < 480 || height > INT_MAX)
-		print_error(WRONG_SIZE, 2);
-	else
-		return ;
-}
+// static void	check_win_size(int width, int height)
+// {
+// 	if (!width || !height)
+// 		print_error(WRONG_SIZE, 2);
+// 	if (width < 1000 || width > INT_MAX || height < 480 || height > INT_MAX)
+// 		print_error(WRONG_SIZE, 2);
+// 	else
+// 		return ;
+// }
 
 int	ft_load_tex(t_game *game)
 {
@@ -124,7 +124,7 @@ int	main(int ac, char **av)
 	img->mlx = mlx_init();
 	if (!img->mlx)
 		return (1);
-	check_win_size(WIDTH, HEIGHT);
+	// check_win_size(WIDTH, HEIGHT);
 	img->win = mlx_new_window(img->mlx, WIDTH, HEIGHT, "cub3D");
 	if (!img->win)
 		return (printf("No Window\n"), 1);

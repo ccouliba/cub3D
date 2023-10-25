@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:48:14 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 15:34:27 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:06:49 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,20 @@ int	check_number(char *s)
 		++tmp1;
 	}
 	return (EXIT_SUCCESS);
+}
+
+unsigned int	get_config_color(char *s)
+{
+	char			**tmp;
+	unsigned int	rgb_color;
+
+	rgb_color = 0;
+	if (occurences(s, ',') != 2)
+		return (EXIT_FAILURE);
+	tmp = ft_split(s, ',');
+	if (!tmp)
+		return (free_double_p(tmp), EXIT_FAILURE);
+	rgb_color = (ft_atoi(tmp[0]) << 16) | (ft_atoi(tmp[1]) << 8)
+		| ft_atoi(tmp[2]);
+	return (free_double_p(tmp), rgb_color);
 }

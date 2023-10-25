@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:55:31 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/09/27 13:21:05 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/25 16:11:52 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	init_config(t_config *config)
 	config->map_size[1] = 0;
 	config->floor = NULL;
 	config->ceiling = NULL;
+	config->floor_color = 0;
+	config->ceiling_color = 0;
 	config->map = (char **) NULL;
 }
 
@@ -89,8 +91,8 @@ int	parser(int ac, char **av, t_config *config)
 		return (print_error(MAP_ERROR, 2), 1);
 	get_map_config(config);
 	lines_length(config);
-	dprintf(2, "direction : [%d]\n", config->direction);
-	dprintf(2, "pos_X = [%d]\npos_Y = [%d]\n", config->pos[0], config->pos[1]);
-	dprintf(2, "map_X = [%d]\nmap_Y = [%d]\n", config->map_size[0], config->map_size[1]);
+	// dprintf(2, "direction : [%d]\n", config->direction);
+	// dprintf(2, "pos_X = [%d]\npos_Y = [%d]\n", config->pos[0], config->pos[1]);
+	// dprintf(2, "map_X = [%d]\nmap_Y = [%d]\n", config->map_size[0], config->map_size[1]);
 	return (/*free_double_p(line), */EXIT_SUCCESS);
 }

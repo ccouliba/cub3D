@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:38 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/24 17:46:59 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:07:52 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_mlx
 	int				bpp;
 	int				size_line;
 	int				endian;
-	t_tex			texs[4]; /*norht, south, west, east*/
+	t_tex			texs[4];
 	int				re_buf;
 	char			*addr;
 	int				**buf;
@@ -101,6 +101,8 @@ typedef struct s_config
 	char			*tex_files[4]; /*order: north, south, east, west*/
 	char			*floor;
 	char			*ceiling;
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
 	char			**map;
 }				t_config;
 
@@ -111,8 +113,6 @@ typedef struct s_param
 	int		hit;
 	int		side;
 	int		color;
-	// int		texture;
-	// int		text_num;
 	int		line_height;
 	int		map[2];
 	int		text[2];
