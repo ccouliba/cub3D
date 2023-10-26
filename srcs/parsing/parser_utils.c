@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                    :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 05:29:22 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/02/16 05:35:12 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:12:11 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,10 @@ int	occurences(char *s, int c)
 void	lines_length(t_config *config)
 {
 	int		i;
-	int		len;
 	char	**map;
 
 	i = 0;
 	map = config->map;
-	len = ft_strlen(map[i]);
 	++i;
 	while (map[i])
 	{

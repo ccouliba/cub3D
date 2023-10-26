@@ -1,6 +1,6 @@
 NAME		= cub3D
 
-CC			= clang -g3 -MMD
+CC			= gcc -g3 -MMD
 
 RM 			= rm -rf
 
@@ -39,12 +39,14 @@ SRCS =	srcs/main.c \
 
 OBJS = $(SRCS:.c=.o)
 
-DPD				= $(OBJ:.o=.d)
+DPD				= $(SRCS:.c=.d)
 
 all: $(NAME)
 
 mlx/libmlx.a:
 			$(MAKE) -C $(PATH_MLX)
+
+-include $(DPD)
 
 $(NAME): $(OBJS) $(LIBMLX)
 		make -C $(PATH_MLX) all
@@ -53,11 +55,9 @@ $(NAME): $(OBJS) $(LIBMLX)
 %o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -Iincludes -Imlx -o $@ -c $<
 
--include $(DPD)
-
 clean:
 	make -C $(PATH_MLX) clean
-	${RM} $(OBJS)
+	${RM} $(OBJS) $(DPD)
 
 fclean: clean
 	${RM} $(NAME)
