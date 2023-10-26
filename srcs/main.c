@@ -6,7 +6,7 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 21:44:21 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:35:36 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,15 @@ t_config	init_game(int ac, char **av)
 
 int	exit_mlx(t_mlx *mlx)
 {
+	mlx_destroy_image(mlx->mlx, mlx->texs[0].ptr);
+	mlx_destroy_image(mlx->mlx, mlx->texs[1].ptr);
+	mlx_destroy_image(mlx->mlx, mlx->texs[2].ptr);
+	mlx_destroy_image(mlx->mlx, mlx->texs[3].ptr);
+	mlx_destroy_image(mlx->mlx, mlx->img);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx_destroy_display(mlx->mlx);
 	free(mlx->mlx);
+	
 	mlx->mlx = NULL;
 	return (exit(1), EXIT_FAILURE);
 }
