@@ -6,17 +6,16 @@
 /*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:42:14 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/25 21:45:48 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:56:14 by ngenadie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 #include <math.h>
 
-int	hit_wall2(t_game *game, int i, int ret)
+int	hit_wall2(t_game *game, int i, int ret, char **map)
 {
 	t_mlx			*mlx;
-	char			**map;
 
 	map = game->config.map;
 	mlx = &game->img;
@@ -67,7 +66,7 @@ int	hit_wall(t_game *game, int i)
 				return (color_vline(mlx, i, distx(mlx), mlx->texs[3]), 1);
 		}
 	}
-	return (hit_wall2(game, i, ret));
+	return (hit_wall2(game, i, ret, map));
 }
 
 void	player_direction(t_game game, t_mlx *mlx)
