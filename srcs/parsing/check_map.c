@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 05:37:28 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/27 20:37:11 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/27 21:47:47 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ static int	check_around_zero(char **line)
 		j = 0;
 		while (line[i][j])
 		{
-			if (line[i][j] == '0')
+			if (line[i][j] == '0' || line[i][j] == 'N' || line[i][j] == 'S'
+				|| line[i][j] == 'W' || line[i][j] == 'E')
 				if (around_zero(line, i, j))
 					return (EXIT_FAILURE);
 			++j;
