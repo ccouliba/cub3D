@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:23:44 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/26 16:24:01 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:26:53 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ void			change_pos(t_game *game, t_mlx *mlx, double new_x,
 /*********************************** UTILS ************************************/
 /******************************************************************************/
 void			print_error(char *type, int fd);
-int				exit_mlx(t_mlx *mlx);
-
+int				exit_mlx(t_game *game);
+void			free_textures(t_config *config);
+void			init_texture(t_config *config);
 /*
 ** Gnl
 */

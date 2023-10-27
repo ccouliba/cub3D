@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:55:31 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 21:36:02 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:25:55 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	check_arg_number(int ac)
 
 static int	check_all_config(t_config *config, char **line)
 {
-	if (!line || check_flag(line) || check_config(config, line))
+	if (check_config(config, line))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -81,13 +81,15 @@ int	parser(int ac, char **av, t_config *config)
 	if (check_file(av[1], CUB_EXT))
 		return (print_error(FILE_ERROR, 2), 1);
 	config->line = read_file(av[1]);
-	if (!config->line)
-		return (print_error(FILE_ERROR, 2), 1);
+	if (!config->line || check_flag(config->line))
+		return (free_double_p(config->line), print_error(FILE_ERROR, 2), 1);
 	init_config(config);
 	if (check_all_config(config, config->line))
-		return (print_error(PARSING_ERROR, 2), 1);
+		return (free_textures(config), free_double_p(config->line)
+			, print_error(PARSING_ERROR, 2), 1);
 	if (check_map(config, config->line))
-		return (print_error(MAP_ERROR, 2), 1);
+		return (free_textures(config), free_double_p(config->line)
+			, print_error(MAP_ERROR, 2), 1);
 	get_map_config(config);
 	lines_length(config);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:18:43 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 21:18:09 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:29:47 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	**read_file(char *av)
 	if (!tmp)
 		return (NULL);
 	line = ft_malloc_double_p(tmp);
-	if (!line)
+	if (!line || !*line)
 		return (NULL);
 	free_stack(&tmp, free);
 	close(fd);

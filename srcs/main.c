@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/26 17:35:36 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:17:57 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,26 @@ t_config	init_game(int ac, char **av)
 	return (config);
 }
 
-int	exit_mlx(t_mlx *mlx)
+int	exit_mlx(t_game *game)
 {
-	mlx_destroy_image(mlx->mlx, mlx->texs[0].ptr);
-	mlx_destroy_image(mlx->mlx, mlx->texs[1].ptr);
-	mlx_destroy_image(mlx->mlx, mlx->texs[2].ptr);
-	mlx_destroy_image(mlx->mlx, mlx->texs[3].ptr);
+	int		i;
+	t_mlx	*mlx;
+
+	i = 0;
+	mlx = &game->img;
+	while (i < 4)
+	{
+		mlx_destroy_image(mlx->mlx, mlx->texs[i].ptr);
+		if (game->config.tex_files[i])
+			free(game->config.tex_files[i]);
+		++i;
+	}
 	mlx_destroy_image(mlx->mlx, mlx->img);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx_destroy_display(mlx->mlx);
 	free(mlx->mlx);
-	
 	mlx->mlx = NULL;
+	free_double_p(game->config.line);
 	return (exit(1), EXIT_FAILURE);
 }
 
@@ -58,9 +66,11 @@ static int	release_key(int key_code, void *ptr)
 
 static int	press_key(int key_code, void *ptr)
 {
+	t_game		*game;
 	t_mlx		*mlx;
 
-	mlx = ptr;
+	game = ptr;
+	mlx = &game->img;
 	if (key_code == ROTATE_LEFT)
 		mlx->l = 1;
 	else if (key_code == ROTATE_RIGHT)
@@ -75,7 +85,7 @@ static int	press_key(int key_code, void *ptr)
 		mlx->d = 1;
 	else if (key_code == ESC)
 	{
-		exit_mlx(mlx);
+		exit_mlx(game);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
@@ -97,9 +107,9 @@ int	main(int ac, char **av)
 	img->ceiling = game.config.ceiling_color;
 	img->floor = game.config.floor_color;
 	mlx_loop_hook(img->mlx, &raycasting, &game);
-	mlx_hook(img->win, 2, 1L << 0, &press_key, img);
+	mlx_hook(img->win, 2, 1L << 0, &press_key, &game);
 	mlx_hook(img->win, 3, 1L << 1, &release_key, img);
-	mlx_hook(img->win, 17, 0L, exit_mlx, img);
+	mlx_hook(img->win, 17, 0L, exit_mlx, &game);
 	mlx_loop(img->mlx);
 	return (0);
 }

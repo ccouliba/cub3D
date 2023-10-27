@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 20:35:57 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 21:12:12 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:28:02 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ static int	check_config_line(t_config *config, char *line)
 			|| check_xpm_file(config->s[1]))
 			return (free_double_p(config->s), EXIT_FAILURE);
 		if (get_direction_config(config, line, config->s[1]))
-			return (free_double_p(config->s), EXIT_FAILURE);
+			return (free_double_p(config->line), free_double_p(config->s)
+				, EXIT_FAILURE);
 		free_double_p(config->s);
 	}
 	else if (*line == 'F' || *line == 'C')
@@ -119,6 +120,7 @@ int	check_config(t_config *config, char **line)
 
 	i = 0;
 	count = 0;
+	init_texture(config);
 	while (line[i])
 	{
 		if (*line[i])

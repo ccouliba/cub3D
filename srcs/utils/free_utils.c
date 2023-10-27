@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:57:14 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 15:34:27 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:30:22 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,27 @@ void	free_stack(t_list **stack, void (*clr)())
 			*stack = elem;
 		}
 		*stack = NULL;
+	}
+}
+
+void	init_texture(t_config *config)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+		config->tex_files[i++] = 0;
+}
+
+void	free_textures(t_config *config)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (config->tex_files && config->tex_files[i])
+			free(config->tex_files[i]);
+		++i;
 	}
 }
