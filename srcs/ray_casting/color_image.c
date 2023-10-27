@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_image.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:08:17 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/25 21:40:56 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/27 22:27:29 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	color_line(t_mlx *mlx, int y, int distance)
 			adr = (int *)(mlx->addr + (j
 						* mlx->size_line + i * (mlx->bpp / 8)));
 			if (j < HEIGHT / 2)
-				*adr = mlx->floor;
-			else
 				*adr = mlx->ceiling;
+			else
+				*adr = mlx->floor;
 			i++;
 		}
 		i = 0;

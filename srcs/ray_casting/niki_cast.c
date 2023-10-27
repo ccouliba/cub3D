@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   niki_cast.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngenadie <ngenadie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:42:14 by ngenadie          #+#    #+#             */
-/*   Updated: 2023/10/26 15:56:14 by ngenadie         ###   ########.fr       */
+/*   Updated: 2023/10/27 22:24:32 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	hit_wall2(t_game *game, int i, int ret, char **map)
 			ret = 1;
 			if (mlx->ray.dy > mlx->p_y
 				&& map[(int)mlx->ray.dy - 1][(int)mlx->ray.dx] != '1')
-				return (color_vline(mlx, i, disty(mlx), mlx->texs[0]), 1);
+				return (color_vline(mlx, i, disty(mlx), mlx->texs[1]), 1);
 			if (mlx->ray.dy < mlx->p_y
 				&& map[(int)mlx->ray.dy + 1][(int)mlx->ray.dx] != '1')
-				return (color_vline(mlx, i, disty(mlx), mlx->texs[1]), 1);
+				return (color_vline(mlx, i, disty(mlx), mlx->texs[0]), 1);
 			if (mlx->ray.dy < mlx->p_y)
-				return (color_vline(mlx, i, disty(mlx), mlx->texs[1]), 1);
-			return (color_vline(mlx, i, disty(mlx), mlx->texs[0]), 1);
+				return (color_vline(mlx, i, disty(mlx), mlx->texs[0]), 1);
+			return (color_vline(mlx, i, disty(mlx), mlx->texs[1]), 1);
 		}
 	}
 	mlx->ray.last_y = mlx->ray.dy;
@@ -60,10 +60,10 @@ int	hit_wall(t_game *game, int i)
 			ret = 1;
 			if (mlx->ray.dx > mlx->p_x
 				&& map[(int)mlx->ray.dy][(int)mlx->ray.dx - 1] != '1')
-				return (color_vline(mlx, i, distx(mlx), mlx->texs[2]), 1);
+				return (color_vline(mlx, i, distx(mlx), mlx->texs[3]), 1);
 			if (mlx->ray.dx < mlx->p_x
 				&& map[(int)mlx->ray.dy][(int)mlx->ray.dx + 1] != '1')
-				return (color_vline(mlx, i, distx(mlx), mlx->texs[3]), 1);
+				return (color_vline(mlx, i, distx(mlx), mlx->texs[2]), 1);
 		}
 	}
 	return (hit_wall2(game, i, ret, map));

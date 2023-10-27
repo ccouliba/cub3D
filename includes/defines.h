@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:18:48 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 21:14:27 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/27 22:05:43 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@
 # define OFFSET 64
 # define TEXT_HEIGHT 32
 # define TEXT_WIDTH 32
-# define WIDTH 640
-# define HEIGHT 480
-# define HALF_WIDTH 320
-# define HALF_HEIGHT 240
+# define WIDTH 1920
+# define HEIGHT 1080
+# define HALF_WIDTH 960
+# define HALF_HEIGHT 540
 # define FOV 40
 # define HALF_FOV 20
-# define PRECISION 1024
+# define PRECISION 256
 # define WALL_GAP 0.1
 
 #endif
