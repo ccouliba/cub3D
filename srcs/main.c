@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 11:39:03 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/27 20:17:57 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/28 11:12:42 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,22 @@ int	exit_mlx(t_game *game)
 	mlx = &game->img;
 	while (i < 4)
 	{
-		mlx_destroy_image(mlx->mlx, mlx->texs[i].ptr);
+		if (mlx->texs[i].ptr)
+			mlx_destroy_image(mlx->mlx, mlx->texs[i].ptr);
 		if (game->config.tex_files[i])
 			free(game->config.tex_files[i]);
 		++i;
 	}
-	mlx_destroy_image(mlx->mlx, mlx->img);
-	mlx_destroy_window(mlx->mlx, mlx->win);
-	mlx_destroy_display(mlx->mlx);
-	free(mlx->mlx);
-	mlx->mlx = NULL;
+	if (mlx->img)
+		mlx_destroy_image(mlx->mlx, mlx->img);
+	if (mlx->win)
+		mlx_destroy_window(mlx->mlx, mlx->win);
+	if (mlx->mlx)
+	{
+		mlx_destroy_display(mlx->mlx);
+		free(mlx->mlx);
+		mlx->mlx = NULL;
+	}
 	free_double_p(game->config.line);
 	return (exit(1), EXIT_FAILURE);
 }
