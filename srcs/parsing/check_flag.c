@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:00:17 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/25 18:28:43 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/28 11:44:15 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_flag(t_flag *flag)
 
 static void	get_flag_line(t_flag *flag, char *line)
 {
-	if (!ft_strncmp(line, "NO", 2))
+	if (!ft_strncmp(line, NORTH, 2))
 		++flag->north;
 	else if (!ft_strncmp(line, SOUTH, 2))
 		++flag->south;

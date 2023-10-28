@@ -6,7 +6,7 @@
 /*   By: ccouliba <ccouliba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 12:07:00 by ccouliba          #+#    #+#             */
-/*   Updated: 2023/10/27 22:11:55 by ccouliba         ###   ########.fr       */
+/*   Updated: 2023/10/28 12:32:28 by ccouliba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_putstr_fd(char *s, int fd)
 
 void	print_error(char *type, int fd)
 {
-	ft_putstr_fd("ERROR\n", fd);
+	ft_putstr_fd("Error\n", fd);
 	ft_putstr_fd("[\033[5;31m!\033[0;m]", fd);
 	ft_putstr_fd(" cub3D", fd);
 	ft_putstr_fd(" : ", fd);
